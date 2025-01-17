@@ -82,3 +82,7 @@ public class LinkedListExample {
         linkedList.printList();
     }
 }
+
+
+// Delete Node at First
+Node D
