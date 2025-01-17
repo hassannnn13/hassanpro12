@@ -1,3 +1,4 @@
+//Node at Beg
 class Node {
     int data;
     Node next;
@@ -29,6 +30,53 @@ public class LinkedListExample {
     public static void main(String[] args) {
         LinkedList linkedList = new LinkedList();
         linkedList.addAtBeg(10);
+    
+
+        linkedList.printList();
+    }
+}
+
+//Node At last
+
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+class LinkedList {
+    Node head;
+
+    public void addAtBeg(int data) {
+        if(head==null){
+head = newNode;
+}
+else{
+Node cuurent = head;
+while(current.next !=null){
+current = current.next;
+}
+current.next = newNode;
+}
+}
+ public void printList() {
+        Node currentNode = head;
+        while (currentNode != null) {
+            System.out.print(currentNode.data + " -> ");
+            currentNode = currentNode.next;
+        }
+        System.out.println("None");
+    }
+}
+
+public class LinkedListExample {
+    public static void main(String[] args) {
+        LinkedList linkedList = new LinkedList();
+        linkedList.addAtLast(10);
     
 
         linkedList.printList();
