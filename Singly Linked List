@@ -14,3 +14,23 @@ class LinkedList {
     public void addAtBeg(int data) {
         Node newNode = new Node(data);
          newNode.next = head;
+}
+ public void printList() {
+        Node currentNode = head;
+        while (currentNode != null) {
+            System.out.print(currentNode.data + " -> ");
+            currentNode = currentNode.next;
+        }
+        System.out.println("None");
+    }
+}
+
+public class LinkedListExample {
+    public static void main(String[] args) {
+        LinkedList linkedList = new LinkedList();
+        linkedList.addAtBeg(10);
+    
+
+        linkedList.printList();
+    }
+}
