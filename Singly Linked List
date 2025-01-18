@@ -18,7 +18,7 @@ class LinkedList {
 }
  public void printList() {
         Node currentNode = head;
-        while (currentNode != null) {
+        while (current != null) {
             System.out.print(currentNode.data + " -> ");
             currentNode = currentNode.next;
         }
@@ -26,7 +26,7 @@ class LinkedList {
     }
 }
 
-public class LinkedListExample {
+public class LinkedList {
     public static void main(String[] args) {
         LinkedList linkedList = new LinkedList();
         linkedList.addAtBeg(10);
@@ -51,13 +51,13 @@ class Node {
 class LinkedList {
     Node head;
 
-    public void addAtBeg(int data) {
+    public void addAtLast(int data) {
         if(head==null){
 head = newNode;
 }
 else{
 Node cuurent = head;
-while(current.next !=null){
+while(current !=null){
 current = current.next;
 }
 current.next = newNode;
@@ -73,7 +73,7 @@ current.next = newNode;
     }
 }
 
-public class LinkedListExample {
+public class LinkedList {
     public static void main(String[] args) {
         LinkedList linkedList = new LinkedList();
         linkedList.addAtLast(10);
@@ -85,4 +85,31 @@ public class LinkedListExample {
 
 
 // Delete Node at First
-Node D
+Node DeleteFirst(){
+if (head ! = null){
+Node toDelete = head;
+head= head.next;
+return toDelete;
+}
+return null;
+}
+
+//Delete Node at Last
+Node DeleteLast(){
+Node current = head;
+if (head == null || head .next == null){
+head = null;
+return current;
+}
+Node nextNode = current.next;
+while(current.next != null){
+if (nextNode ==  null){
+current.next = null;
+}
+current = nextNode;
+nextNode = nextNode.next;
+}
+return current;
+}
+
+
