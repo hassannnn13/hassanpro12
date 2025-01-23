@@ -1,0 +1,164 @@
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+class SinglyLinkedList {
+    Node head;
+
+    // 1. Find the length of the SLL
+    public int getLength() {
+        Node current = head;
+        return getLengthRecursive(current);
+    }
+
+    private int getLengthRecursive(Node node) {
+        if (node == null) return 0;
+        return 1 + getLengthRecursive(node.next);
+    }
+
+    // 2. Print the middle node of the SLL
+    public void printMiddle() {
+        if (head == null) {
+            System.out.println("List is empty.");
+            return;
+        }
+        int length = getLength();
+        int middleIndex = length / 2;
+        Node current = head;
+        for (int i = 0; i < middleIndex; i++) {
+            current = current.next;
+        }
+        System.out.println("Middle node: " + current.data);
+    }
+
+    // 3. Reverse the SLL while retaining the original
+    public SinglyLinkedList reverse() {
+        SinglyLinkedList reversedList = new SinglyLinkedList();
+        Node current = head;
+        while (current != null) {
+            reversedList.prepend(current.data);
+            current = current.next;
+        }
+        return reversedList;
+    }
+
+    private void prepend(int data) {
+        Node newNode = new Node(data);
+        newNode.next = head;
+        head = newNode;
+    }
+
+    // 4. Remove duplicates from a sorted SLL
+    public void removeDuplicates() {
+        Node current = head;
+        removeDuplicatesRecursive(current);
+    }
+
+    private void removeDuplicatesRecursive(Node node) {
+        if (node == null || node.next == null) return;
+        if (node.data == node.next.data) {
+            node.next = node.next.next;
+            removeDuplicatesRecursive(node);
+        } else {
+            removeDuplicatesRecursive(node.next);
+        }
+    }
+
+    // 5. Merge two sorted SLLs
+    public static SinglyLinkedList mergeSorted(SinglyLinkedList list1, SinglyLinkedList list2) {
+        SinglyLinkedList mergedList = new SinglyLinkedList();
+        mergedList.head = mergeSortedRecursive(list1.head, list2.head);
+        return mergedList;
+    }
+
+    private static Node mergeSortedRecursive(Node l1, Node l2) {
+        if (l1 == null) return l2;
+        if (l2 == null) return l1;
+        if (l1.data <= l2.data) {
+            l1.next = mergeSortedRecursive(l1.next, l2);
+            return l1;
+        } else {
+            l2.next = mergeSortedRecursive(l1, l2.next);
+            return l2;
+        }
+    }
+
+    // 6. Delete the entire SLL
+    public void deleteList() {
+        head = null;
+        System.out.println("List deleted successfully.");
+    }
+
+    // Helper function to add a node to the end
+    public void append(int data) {
+        if (head == null) {
+            head = new Node(data);
+            return;
+        }
+        Node current = head;
+        while (current.next != null) {
+            current = current.next;
+        }
+        current.next = new Node(data);
+    }
+
+    // Helper function to display the list
+    public void display() {
+        if (head == null) {
+            System.out.println("List is empty.");
+            return;
+        }
+        Node current = head;
+        while (current != null) {
+            System.out.print(current.data + " -> ");
+            current = current.next;
+        }
+        System.out.println("null");
+    }
+
+    public static void main(String[] args) {
+        SinglyLinkedList list1 = new SinglyLinkedList();
+        list1.append(1);
+        list1.append(2);
+        list1.append(2);
+        list1.append(3);
+        list1.append(4);
+
+        System.out.println("Original List:");
+        list1.display();
+
+        System.out.println("Length of the list: " + list1.getLength());
+
+        System.out.println("Middle of the list:");
+        list1.printMiddle();
+
+        System.out.println("Reversed List:");
+        SinglyLinkedList reversedList = list1.reverse();
+        reversedList.display();
+
+        System.out.println("List after removing duplicates:");
+        list1.removeDuplicates();
+        list1.display();
+
+        SinglyLinkedList list2 = new SinglyLinkedList();
+        list2.append(1);
+        list2.append(3);
+        list2.append(5);
+
+        System.out.println("Second List:");
+        list2.display();
+
+        System.out.println("Merged List:");
+        SinglyLinkedList mergedList = SinglyLinkedList.mergeSorted(list1, list2);
+        mergedList.display();
+
+        list1.deleteList();
+        list1.display();
+    }
+}
