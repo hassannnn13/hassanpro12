@@ -1,0 +1,133 @@
+1.import java.util.LinkedList;
+import java.util.Queue;
+
+class CustomQueue {
+    private Queue<Integer> mainQueue;
+
+    public CustomQueue() {
+        mainQueue = new LinkedList<>();
+    }
+    public void addToQueue(int item) {
+        mainQueue.add(item);
+    }
+
+    public int removeFromQueue() {
+        if (mainQueue.isEmpty()) {
+            return -1; 
+        }
+        return mainQueue.poll();
+    }
+    public void reverseFirstK(int K) {
+        if (mainQueue.isEmpty() || K <= 0) {
+            return;
+        }
+
+        LinkedList<Integer> tempStack = new LinkedList<>();
+ 
+        for (int i = 0; i < K && !mainQueue.isEmpty(); i++) {
+            tempStack.push(mainQueue.poll());
+        }
+
+        while (!tempStack.isEmpty()) {
+            mainQueue.add(tempStack.pop());
+        }
+
+        int remainingSize = mainQueue.size();
+        for (int i = 0; i < remainingSize - K; i++) {
+            mainQueue.add(mainQueue.poll());
+        }
+    }
+
+
+    public void showQueue() {
+        System.out.println(mainQueue);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        CustomQueue queue = new CustomQueue();
+        queue.addToQueue(5);
+        queue.addToQueue(15);
+        queue.addToQueue(25);
+        queue.addToQueue(35);
+        queue.addToQueue(45);
+        
+        System.out.println("Initial Queue:");
+        queue.showQueue();
+
+        queue.reverseFirstK(3);
+
+        System.out.println("Queue after reversing first 3 elements:");
+        queue.showQueue();
+    }
+}
+
+
+2.import java.util.LinkedList;
+import java.util.Queue;
+
+class MinQueue {
+    private Queue<Integer> mainQueue;
+    private LinkedList<Integer> minList;
+
+    public MinQueue() {
+        mainQueue = new LinkedList<>();
+        minList = new LinkedList<>();
+    }
+
+    public void enqueueElement(int value) {
+        mainQueue.add(value);
+        
+        while (!minList.isEmpty() && minList.getLast() > value) {
+            minList.removeLast();
+        }
+        minList.add(value);
+    }
+
+    public int dequeueElement() {
+        if (mainQueue.isEmpty()) {
+            return -1;
+        }
+        
+        int removedValue = mainQueue.poll();
+        
+        if (removedValue == minList.getFirst()) {
+            minList.poll();
+        }
+        
+        return removedValue;
+    }
+
+    public int getMinimumElement() {
+        if (minList.isEmpty()) {
+            return -1;
+        }
+        return minList.getFirst();
+    }
+
+    public void displayQueue() {
+        System.out.println(mainQueue);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        MinQueue queue = new MinQueue();
+        queue.enqueueElement(10);
+        queue.enqueueElement(30);
+        queue.enqueueElement(5);
+        queue.enqueueElement(40);
+        
+        System.out.println("Queue elements:");
+        queue.displayQueue();
+
+        System.out.println("Minimum element in the queue: " + queue.getMinimumElement());
+        
+        queue.dequeueElement();
+        System.out.println("Queue after one dequeue operation:");
+        queue.displayQueue();
+        
+        System.out.println("Minimum element in the queue after dequeue: " + queue.getMinimumElement());
+    }
+}
