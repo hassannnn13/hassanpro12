@@ -1,0 +1,71 @@
+import java.util.*;
+
+public class BinaryTree{
+    static class TreeNode {
+        int data;
+        TreeNode left, right;
+
+        TreeNode(int data) {
+            this.data = data;
+            left = right = null;
+        }
+    }
+
+    public static void collectValues(TreeNode root, List<Integer> values) {
+        if (root != null) {
+            collectValues(root.left, values);
+            values.add(root.data);
+            collectValues(root.right, values);
+        }
+    }
+
+    public static TreeNode sortedArrayToBST(List<Integer> values, int start, int end) {
+        if (start > end) {
+            return null;
+        }
+
+        int mid = (start + end) / 2;
+        TreeNode node = new TreeNode(values.get(mid));
+
+        node.left = sortedArrayToBST(values, start, mid - 1);
+        node.right = sortedArrayToBST(values, mid + 1, end);
+
+        return node;
+    }
+
+    public static void replaceValues(TreeNode root, Iterator<Integer> it) {
+        if (root != null) {
+            replaceValues(root.left, it);
+            root.data = it.next();
+            replaceValues(root.right, it);
+        }
+    }
+
+    public static void printInOrder(TreeNode root) {
+        if (root != null) {
+            printInOrder(root.left);
+            System.out.print(root.data + " ");
+            printInOrder(root.right);
+        }
+    }
+
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(10);
+        root.left = new TreeNode(30);
+        root.right = new TreeNode(15);
+        root.left.left = new TreeNode(20);
+        root.left.right = new TreeNode(5);
+
+        List<Integer> values = new ArrayList<>();
+        collectValues(root, values);
+
+        Collections.sort(values);
+
+        Iterator<Integer> it = values.iterator();
+        replaceValues(root, it);
+
+        printInOrder(root);
+    }
+}
+
+
