@@ -1,0 +1,50 @@
+import java.util.Stack;
+
+public class ExpTree {
+    static class TreeNode {
+        String value;
+        TreeNode left, right;
+
+        TreeNode(String value) {
+            this.value = value;
+            left = right = null;
+        }
+    }
+
+    public static TreeNode constructExpTree(String expression) {
+        Stack<TreeNode> stack = new Stack<>();
+        String[] tokens = expression.split(" ");
+
+        for (String token : tokens) {
+            if (isOperator(token)) {
+                TreeNode node = new TreeNode(token);
+                node.right = stack.pop();
+                node.left = stack.pop();
+                stack.push(node);
+            } else {
+                stack.push(new TreeNode(token));
+            }
+        }
+
+        return stack.peek();
+    }
+
+    public static boolean isOperator(String token) {
+        return token.equals("+") || token.equals("-") || token.equals("*") || token.equals("/");
+    }
+
+    public static void printInOrder(TreeNode root) {
+        if (root != null) {
+            printInOrder(root.left);
+            System.out.print(root.value + " ");
+            printInOrder(root.right);
+        }
+    }
+
+    public static void main(String[] args) {
+        String expr = "5 2 + 2 1 - * 2 9 + /";
+        TreeNode root = constructExpTree(expr);
+
+        printInOrder(root);
+    }
+}
