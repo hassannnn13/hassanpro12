@@ -1,0 +1,8 @@
+print("Hello World!",7, sep="~", end="009\n")
+print("Hassan")
+print(5)
+print("Bye" )
+print(7*3)
+# hello  ctrl+/ for commenting and uncommenting
+print("Twinkle twinkle little star, \n \"how I wonder what you are \", \nup above the world so high,\nlike a diamond in the sky")
+     
