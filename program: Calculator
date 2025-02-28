@@ -1,0 +1,20 @@
+print(5+5)
+print(5-5)
+print(5*5)
+print(5/5)
+print(5**5) # 5 become 5 times like 5x5x5x5x5
+print(5//5) # no decimals
+print(5%5) # remainder
+
+
+
+print("Calculator")
+a = int(input("Enter the first number: "))
+b = int(input("Enter the second number: "))
+print("The value of",a,"+",b,"is:",a+b)
+print("The value of",a,"-",b,"is:" ,a-b)
+print("The value of",a,"*",b,"is:",a*b)
+print("The value of",a,"/",b,"is:",a/b)
+print("The value of",a,"**",b,"is:",a**b)
+print("The value of",a,"//",b,"is:",a//b)
+print("The value of",a,"%",b,"is:",a%b)
