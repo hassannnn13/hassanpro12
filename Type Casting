@@ -1,0 +1,26 @@
+a = 1
+b = 2
+print(a + b) # output (3) beacuse a and b are int.
+
+a = "1"
+b = "2"
+print(a +b) # output (12) beacuse a and b are string and python dosen't add them.
+
+Types:
+a.Exllicit typecasting (done by programmer or their own choice) 
+
+(1) a = "1"
+    b = "2"
+    print(int(a) + int(b)) # first pythom convert string into int and then add them.
+
+(2) string = "15"
+    number = 7
+    string_number = int(string) #throws an error if the string is not a valid integer
+    sum= number + string_number
+    print("The Sum of both the numbers is: ", sum)
+
+b.Imlicit typecasting (python do it automatically)
+
+c = 1.9
+d = 8
+print(c + d) # output (9.9) beacuse python convert d into float and add them
