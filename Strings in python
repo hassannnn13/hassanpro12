@@ -1,0 +1,36 @@
+name = "Hassan"
+friend = "Ali"
+anotherFriend = 'Ahmed' #you can use single or double quotes in strings
+
+print("Hello, " + name)
+
+apple = 'He said, "I want to eat an apple.'
+print(apple)
+
+# Multiline Strings
+b = "He said,
+Hi Hassan
+hey I am good
+"I want to eat an apple" #this will throw an error
+
+c = """He said,
+Hi Hassan
+hey I am good
+"I want to eat an apple""" # trple quotes can be used to print multiline strings
+
+print(c)
+# Accessing Characters of a String
+print(name[0])
+print(name[1])
+print(name[2])
+print(name[3])
+print(name[4])
+print(name[5])
+# print(name[6]) # Throws an error
+# print(friend[0])  # prints friend first character
+# loooping through the string
+print("Lets use a for loop\n")
+for character in name:
+  print(character)
+for character in apple:
+  print(character) #this will print each character of the string apple
