@@ -1,0 +1,17 @@
+variable = input("What is your name?")
+
+a = str(input("Enter your name: "))
+print("My name is", a)
+
+x = input("Enter first number: ")
+y = input("Enter second number: ")
+print(x + y) # if i enter 23 as x and 3 as y then it will print 233 becuse it is a string and python is not able to add two strings
+h = int(input("Enter first number: "))
+j = int(input("Enter second number: "))
+print(h + j) # if i enter 23 as x and 3 as y then it will print 26 becaue it is a integer and python is able to add two integers and we can also write as print(int(x)+int(y)) 
+print(h - j)
+print(h * j)
+print(h / j)
+print(h // j)
+print(h % j)
+print(h ** j)
