@@ -1,0 +1,16 @@
+length of string
+
+names = "hassan,hashir"
+print(names[0:13])
+
+name = "hassan,hashir"
+print(len(name))
+len1 = len(name)
+print("hassan,hashir is a", len1, "letter words.")
+print(name[4:13])
+print(name[:-4])
+print(name[-4:-2]) #13-4=9 and 13-2=11 so, 9:11
+# strings are immutable
+a = "harry"
+print(a[-4:-2]) # 5-4=1 and 5-2=3 so, 1:3
+
