@@ -1,0 +1,25 @@
+import time
+t = time.strftime('%H:%M:%S')
+print(t)
+t = time.strftime('%H')
+print(t)
+t = time.strftime('%M')
+print(t)
+t = time.strftime("%S")
+print(t)
+
+Exercise:
+import time
+a = input("Enter Your Name:  ")
+print("Hello", a)
+timestamp = time.strftime('%H:%M:%S')
+print(timestamp)
+h = int(time.strftime("%H"))
+if (h>4 and h<12):
+  print("Good Morning", a)
+elif (h>=12 and h<16):
+  print("Good Afternoon sir",a)
+elif (h>=16 and h<20):
+  print("Good Evening sir", a)
+else:
+  print("Good Night sir", a)
