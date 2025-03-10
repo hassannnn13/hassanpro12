@@ -4,11 +4,13 @@ i = 0
 while (i < 10):
   print(i)
   i = i + 1
+  
 print("Example 2")
 i =0
 while (i <=10):
   print(i)
   i = i + 1
+  
 print("Example 3")
 i = int(input("Enter the number: "))
 while (i <= 38):
@@ -16,4 +18,16 @@ while (i <= 38):
   print(i)  
 print("Done with the loop")
 
+print("Example 4")
+i = 10
+while (i > 0):
+  print(i)
+  i = i - 1
   
+print("Example 5")
+i = 10
+while (i > 0):
+  print(i)
+  i = i - 1
+else:
+  print("I am inside else")
