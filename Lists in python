@@ -1,0 +1,41 @@
+# python lists
+print("Example 1")
+list1 = [1,2,3,4,5,6,7,8,9,10]
+list2 = ["Red","Green","Blue","Yellow","Green"]
+print(list1)
+print(list2)
+print(type(list1))
+print("\nExample 2")
+marks = [3,4,5,"Hassan",True]
+print(marks)
+print(marks[0])
+print(marks[1])
+print(marks[2])
+print(marks[3])
+print(marks[4])
+details = ["Hassan",20,"Student",9.8]
+print(details)
+
+#list index
+print("\nExample 1")
+colours = ["Red","Green","Blue","Yellow","Green"]
+#          [0]    [1]    [2]     [3]     [4]
+print(colours[0])
+print(colours[1])
+print(colours[2])
+print(colours[3])
+print(colours[4])
+# print(colours[5]) # Throws an error
+
+#Negative indexing
+print("\nExample 1")
+colours = ["Red","Green","Blue","Yellow","Green"]
+#          [-5]   [-4]   [-3]    [-2]    [-1]
+print(colours[-1])
+print(colours[len(colours)-2]) # [5-2] = [3] and 3 is the index of "Yellow" if we count from 0
+print(colours[-5])
+if "lght blue" in colours:
+  print("Yes")
+else:
+  print("No")
+  
