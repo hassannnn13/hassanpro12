@@ -38,4 +38,13 @@ if "lght blue" in colours:
   print("Yes")
 else:
   print("No")
-  
+
+#Range of index
+print("\nExample 1")
+colours = ["Red","Green","Blue","Yellow","Green"]
+print(colours[1:4]) 
+print(colours[1:4:2]) # Jump index 
+print(colours[:]) 
+print(colours[-4:-1]) # [5-4:5-1] = [1:4]
+print(colours[-4:-1:2]) # [5-4:5-1:2] = [1:4:2]
+
