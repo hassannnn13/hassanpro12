@@ -1,0 +1,39 @@
+alert("Hello Hassan"); for pop up
+console.log("Hello!"); for print
+
+Variables in java are the containers for data
+name= "Hassan Idrees";
+console.log(name); // Result= Hassan Idrees
+
+dinamically typed(no need to tell the data type)
+
+first character should be letter,underscore or dollar.
+
+LET,CONST,VAR
+let name = "Hassan Idrees"; (can be updated)
+console.log(name);
+var name = "Hassan Idrees"; (no need to use as good practice as it is use before 2015) (redeclared)
+console.log(name);
+const name = "Hassan Idrees"; (fixed)
+console.log(name);
+
+Data Types:
+String,Integer,Boolean,Undefined,Null,BigInt,Symbol.
+
+const student = {
+fullName : "Hassan Idrees",
+age : 25,
+};
+console.log(student["age"]);
+
+const product = {
+title : "Ball Pen",
+ratng : 4,
+price : 200,
+offer : 5,
+};  
+console.log(product);
+
+Operators:
+(+,-,*,/,%,**,++,--)
+
