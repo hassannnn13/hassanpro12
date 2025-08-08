@@ -1,4 +1,8 @@
 alert("Hello Hassan"); for pop up
+prompt ("Hello Hassan"); for pop up wit textarea for input
+Example:
+let name = prompt ("Hello!");
+console.log(name); 
 console.log("Hello!"); for print
 
 Variables in java are the containers for data
@@ -36,4 +40,45 @@ console.log(product);
 
 Operators:
 (+,-,*,/,%,**,++,--)
+
+IF:
+let color;
+mode = "dark";
+if (mode === "dark"){
+color = "black";
+}
+
+IF/ ELSE:
+let color;
+mode = "dark";
+if (mode === "dark"){
+color = "black";
+} else {
+color = "white";
+}
+
+ELSE-IF:
+let age = 19;
+if (age < 18){
+console.log("junior");
+} else if (age > 60) {
+console.log("senior");
+} else {
+console.log("middle");
+}
+
+SWITCH:
+const expr = "Papayas";
+switch (expr) {
+  case "Oranges":
+    console.log("Oranges are $0.59 a pound.");
+    break;
+  case "Mangoes":
+  case "Papayas":
+    console.log("Mangoes and papayas are $2.79 a pound.");
+    // Expected output: "Mangoes and papayas are $2.79 a pound."
+    break;
+  default:
+    console.log(`Sorry, we are out of ${expr}.`);
+}
 
