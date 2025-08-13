@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Login Page</title>
+    <style>
+   
+
+        .login-container {
+            background-color: white;
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            width: 300px;
+        }
+
+        h1 {
+            color: red;
+            margin-bottom: 20px;
+        }
+
+        form div {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 15%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 50px;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        .forgot-password {
+            text-align: right;
+            font-size: 0.9em;
+        }
+
+        .forgot-password a {
+            color: #007bff;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        button {
+            width: 10%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<h1>User Login</h1>
+ <form action="/login" method="post">
+ <div>
+ <label>USERNAME:  <input type="text" name="username"></label>
+ </div>
+ <div>
+ <label>PASSWORD:  <input type="password" name="password">
+</label>
+ </div>
+ <div>
+ <label>remember me <input type="checkbox" name="remember me"></label>
+ </div>
+ <div>
+ <label><a href="forget password"> forget password?  </a></label>
+ </div>
+ <div>
+ <button type ="submit" name ="action" value="login">Login</button>
+ </div>
+</form>
+
+</body>
+</html>
