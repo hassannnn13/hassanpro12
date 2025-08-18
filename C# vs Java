@@ -1,0 +1,85 @@
+1. Basic Structure
+C#:using System;
+class Program
+{
+    static void Main(string[] args)
+    {
+        Console.WriteLine("Hello, World!");
+    }
+}
+Java:public class Program {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+
+Key Differences:
+C# uses using for namespaces, while Java uses import.
+Main in C# is capitalized and resides in a class, while Java's main is lowercase.
+
+
+2. Data Types
+C#:int number = 10;
+string text = "Hello";
+bool isTrue = true;
+
+Java:int number = 10;
+String text = "Hello";
+boolean isTrue = true;
+
+Key Differences:
+C# uses string (lowercase s), while Java uses String (uppercase S).
+Boolean type in C# is bool, while in Java it is boolean.
+
+3. Console Output
+C#:Console.WriteLine("Hello, " + name + "!");
+Java:System.out.println("Hello, " + name + "!");
+
+Key Differences:
+C# uses Console.WriteLine, while Java uses System.out.println.
+
+4. Properties vs Getters/Setters
+C#:public class Person
+{
+    public string Name { get; set; }
+}
+Java:public class Person {
+    private String name;
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+
+Key Differences:
+C# has built-in properties (get; set;), making it more concise.
+Java requires explicit getter and setter methods.
+
+5. Exception Handling
+C#:try {
+    int result = 10 / 0;
+} catch (DivideByZeroException ex) {
+    Console.WriteLine("Cannot divide by zero.");
+}
+Java:try {
+    int result = 10 / 0;
+} catch (ArithmeticException ex) {
+    System.out.println("Cannot divide by zero.");
+}
+
+Key Differences:
+C# has specific exceptions like DivideByZeroException.
+Java uses more general exceptions like ArithmeticException.
+
+6. Memory Management
+Both languages use garbage collection, but:
+C# has Dispose and using for deterministic cleanup.
+Java uses try-with-resources for similar functionality.
+
+7. Platform Dependency
+Java is platform-independent via JVM.
+C# is primarily Windows-focused but has cross-platform support via .NET Core.
+Both languages are powerful and versatile, but C# often feels more modern and concise due to features like properties, LINQ, and async/await. 
+Java, on the other hand, is widely used for its portability and extensive ecosystem.
