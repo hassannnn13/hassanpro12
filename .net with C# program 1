@@ -1,0 +1,10 @@
+using System;
+class SI
+{
+    static void Main(){
+        float p=12000,r=2,t=2,si;
+        si=(p*t*r)/100;
+        Console.WriteLine("OUTPUT is {0}",si);
+    }
+} 
+// OUTPUT is 480
