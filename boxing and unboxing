@@ -1,0 +1,13 @@
+using System;
+class Boxing
+{
+    static void Main(){
+        int a=10;
+        int b;
+        object o;
+        o=a; //boxing
+        Console.WriteLine(o);
+        b=(int)o; //unboxing and also casting bcuz object is superior
+        Console.WriteLine(b);
+    }
+}
