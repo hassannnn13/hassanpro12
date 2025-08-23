@@ -4,7 +4,7 @@ class SI
     static void Main(){
         float p=12000,r=2,t=2,si;
         si=(p*t*r)/100;
-        Console.WriteLine("OUTPUT is {0}",si);
+        Console.WriteLine("OUTPUT is {0}",si); //{0} is placeholder
     }
 } 
 // OUTPUT is 480
