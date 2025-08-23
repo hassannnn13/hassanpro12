@@ -1,0 +1,10 @@
+int age; // Declaration
+age = 25; // Initialization
+we can also write like this int age = 25;
+
+Pascal Case (MyName) C# prefers
+Camel Case (myName)
+
+if we putting var name = "Hassan" // Compiler already infers that the data type is string
+
+Console.writeLine(5+5) // literals
