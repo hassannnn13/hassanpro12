@@ -1,0 +1,143 @@
+using Microsoft.AspNetCore.Mvc;
+using StudentApi.Models;
+
+namespace StudentApi.Controllers
+{
+    [ApiController]
+    [Route("api/[controller]")]
+    public class StudentController : ControllerBase
+    {
+        private static List<Student> students = new List<Student>
+        {
+            new Student { Id = 1, Name = "Hassan", Age = 20 },
+            new Student { Id = 2, Name = "Idrees", Age = 50 }
+        };
+
+        [HttpGet]
+        public IActionResult GetAllStudents()
+        {
+            return Ok(students);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetStudentById(int id)
+        {
+            var student = students.FirstOrDefault(s => s.Id == id);
+            if (student == null)
+            {
+                return NotFound();
+            }
+            return Ok(student);
+        }
+
+        [HttpPost]
+        public IActionResult AddStudent([FromBody] Student student)
+        {
+            student.Id = students.Count + 1;
+            students.Add(student);
+            return Ok(student);
+        }
+    }
+}
+
+
+
+
+1. using Microsoft.AspNetCore.Mvc;
+
+👉 Ye line ASP.NET Core MVC (controllers, routing, attributes jaise [HttpGet]) use karne ke liye hai.
+
+2. using StudentApi.Models;
+
+👉 Ye Models folder ke andar jo Student class banayi hai (Id, Name, Age) usko use karne ke liye hai.
+
+3. Controller ka Structure
+namespace StudentApi.Controllers
+{
+    public class StudentController1 : Controller
+    {
+        [ApiController]
+        [Route("api/[controller]")]
+        public class StudentController : ControllerBase
+
+
+namespace StudentApi.Controllers → Ye batata hai controller kis namespace/project ke andar hai.
+
+StudentController1 : Controller → ye ek outer class hai (actually unnecessary hai, sirf confusion create kar raha hai, tu isko hata bhi sakta hai ✅).
+
+[ApiController] → batata hai ke ye ek API controller hai, MVC view controller nahi.
+
+[Route("api/[controller]")] → iska matlab hai agar controller ka naam StudentController hai, toh URL hoga:
+
+https://localhost:xxxx/api/student
+
+4. Student List
+private static List<Student> students = new List<Student>
+{
+    new Student { Id = 1, Name = "Hassan", Age = 20 },
+    new Student { Id = 2, Name = "Idrees", Age = 50 }
+};
+
+
+👉 Ye ek in-memory database hai. Matlab data abhi sirf memory me hai, SQL me nahi.
+
+Pehle se 2 students stored hain: Hassan aur Idrees.
+
+5. Endpoints
+a) Get All Students
+[HttpGet]
+public IActionResult GetAllStudents()
+{
+    return Ok(students);
+}
+
+
+👉 Jab tu call karega:
+
+GET: https://localhost:xxxx/api/student
+
+
+Toh ye saare students return karega (list ke form me).
+
+b) Get Student by Id
+[HttpGet("{id}")]
+public IActionResult GetStudentById(int id)
+{
+    var student = students.FirstOrDefault(s => s.Id == id);
+    if (student == null)
+    {
+        return NotFound();
+    }
+    return Ok(student);
+}
+
+
+👉 Jab tu call karega:
+
+GET: https://localhost:xxxx/api/student/1
+
+
+Ye sirf Id = 1 wala student return karega.
+Agar student nahi mila toh 404 Not Found milega.
+
+c) Add Student
+[HttpPost]
+public IActionResult AddStudent([FromBody] Student student)
+{
+    student.Id = students.Count + 1;
+    students.Add(student);
+    return Ok(student);
+}
+
+
+👉 Jab tu call karega (Swagger ya Postman me):
+
+POST: https://localhost:xxxx/api/student
+Body (JSON):
+{
+  "name": "Ali",
+  "age": 25
+}
+
+
+Ye automatically ek naya student add kar dega list me aur return karega.
