@@ -1,0 +1,54 @@
+(Console App – OOP Basics):
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace OOPDemo
+{
+    interface IWorker
+    {
+        void DoWork();
+    }
+
+    class Employee : IWorker
+    {
+        public string Name { get; set; }
+        public string Role { get; set; }
+
+        public Employee(string name, string role)
+        {
+            Name = name;
+            Role = role;
+        }
+
+        public void DoWork()
+        {
+            Console.WriteLine($"{Name} is working as {Role}");
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<Employee> employees = new List<Employee>()
+            {
+                new Employee("Ali", "Developer"),
+                new Employee("Sara", "Tester"),
+                new Employee("Hassan", "Manager")
+            };
+
+            // LINQ Example
+            var devs = employees.Where(e => e.Role == "Developer");
+
+            foreach (var emp in devs)
+            {
+                emp.DoWork();
+            }
+        }
+    }
+}
+
+
+👉 Isme interface, class, inheritance, aur LINQ ek hi jagah cover ho gaye.
