@@ -1,0 +1,39 @@
+IV= Ab7xPq9Lm2Rt4YzN
+key= X9fT4aZrQ1mU7vWsK3nLp0DyB6eRg8Ht
+AES-CBC 256
+  
+Decrypt:{
+  "batchId": "hello-batch-001",
+  "transactionDateTime": "2025-08-11",
+  "receiverBank": "National Bank Karachi",
+  "instructions": [
+    {
+      "instructionId": "00000000000037766720028",
+      "transactionId": "TXN-1234567890",
+      "transactionAmount": "1500.75",
+      "creditorTitle": "Ali Ahmed",
+      "creditorIban": "PK36SCBL0000001123456702",
+      "debitorTitle": "Hassan Khan",
+      "debitorIban": "PK45HABB0000002023456701",
+      "recipientMobileNumber": "923001234567",
+    }
+  ]
+}
+
+Encrypt:{
+  "batchId": "NIucyS9eQbdiRzln9cIEkg==",
+  "transactionDateTime": "2025-08-11",
+  "receiverBank": "52qfkflprmXLpPPcl7B/nHS+GBc5liGHl0fF1ziagWU=",
+  "instructions": [
+    {
+      "instructionId": "00000000000037766720028",
+      "transactionId": "WuCb6ZMPI8kK6GEP1MjAQA==",
+      "transactionAmount": "1500.75",
+      "creditorTitle": "udu52K3zH3MNMkTSumkMPg==",
+      "creditorIban": "ihJLFo50bag8UMvy1jGYUwoSGK+RGopddEYpo9IIWNY=",
+      "debitorTitle": "spcZyu2Q4b+OSV21ASxYXg==",
+      "debitorIban": "lU9lILBpHV1VFUzVaI0oHRciRfXctlwBSD1bvjcQXZQ=",
+      "recipientMobileNumber": "923001234567",
+    }
+  ]
+}
