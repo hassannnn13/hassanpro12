@@ -2,7 +2,7 @@ IV= Ab7xPq9Lm2Rt4YzN
 key= X9fT4aZrQ1mU7vWsK3nLp0DyB6eRg8Ht
 AES-CBC 256
   
-Decrypt:{
+=> Decrypt:{
   "batchId": "hello-batch-001",
   "transactionDateTime": "2025-08-11",
   "receiverBank": "National Bank Karachi",
@@ -20,7 +20,7 @@ Decrypt:{
   ]
 }
 
-Encrypt:{
+=> Encrypt:{
   "batchId": "NIucyS9eQbdiRzln9cIEkg==",
   "transactionDateTime": "2025-08-11",
   "receiverBank": "52qfkflprmXLpPPcl7B/nHS+GBc5liGHl0fF1ziagWU=",
@@ -37,3 +37,15 @@ Encrypt:{
     }
   ]
 }
+=> txt file
+LogID     : 67335c41-7d37-4516-bd8d-3efc767c51be
+LogDate   : 2025-08-11 15:13:57
+ErrorType : SENSITIVE
+Message   : Prevalidation Packet : {"batchId":"NIucyS9eQbdiRzln9cIEkg==","transactionDateTime":"2025-08-11","receiverBank":"52qfkflprmXLpPPcl7B/nHS+GBc5liGHl0fF1ziagWU=","instructions":[{"instructionId":"00000000000037766720028","transactionId":"WuCb6ZMPI8kK6GEP1MjAQA==","transactionAmount":"1500.75","creditorTitle":"udu52K3zH3MNMkTSumkMPg==","creditorIban":"ihJLFo50bag8UMvy1jGYUwoSGK+RGopddEYpo9IIWNY=","debitorTitle":"spcZyu2Q4b+OSV21ASxYXg==","debitorIban":"lU9lILBpHV1VFUzVaI0oHRciRfXctlwBSD1bvjcQXZQ=","recipientMobileNumber":"923001234567"}]}
+------------------------------------------------------
+LogID     : ae261817-1211-42d1-b676-0475b17a926e
+LogDate   : 2025-08-11 15:14:00
+ErrorType : SENSITIVE
+Message   : Response : 0;{"response":{"response_code":"00","response_desc":"Success"},"BatchId":"NIucyS9eQbdiRzln9cIEkg=="}
+------------------------------------------------------
+
