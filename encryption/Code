@@ -1,0 +1,333 @@
+=> Service1.cs
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
+using System.ServiceProcess;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Timers;
+using Newtonsoft.Json.Linq;
+
+namespace WindowsService1
+{
+    public partial class Service1 : ServiceBase
+    {
+        public static byte[] Key = Encoding.UTF8.GetBytes("X9fT4aZrQ1mU7vWsK3nLp0DyB6eRg8Ht"); 
+        public static byte[] IV = Encoding.UTF8.GetBytes("Ab7xPq9Lm2Rt4YzN"); 
+
+        System.Timers.Timer obj_Timer = null;
+        int sTickInterval = 60000;
+
+        string inputFile = @"C:\hassan\28_aug_2025.txt";
+        string outputFile = @"C:\hassan\28_Aug_2025_log.decrypt.txt";
+        string logFile = @"C:\hassan\ServiceLog5.txt";
+
+        public Service1() => InitializeComponent();
+
+        protected override void OnStart(string[] args)
+        {
+            try
+            {
+                Log("Service Starting...");
+                Log($"Key Length: {Key.Length}, IV Length: {IV.Length}");
+
+                obj_Timer = new System.Timers.Timer(sTickInterval);
+                obj_Timer.Elapsed += new ElapsedEventHandler(obj_Timer_Elapsed);
+                obj_Timer.Start();
+
+                Log("Service Started.");
+            }
+            catch (Exception ex)
+            {
+                Log("Service OnStart Error " + ex);
+            }
+        }
+
+        protected override void OnStop()
+        {
+            try
+            {
+                Log("Service Stopping...");
+                obj_Timer?.Stop();
+                obj_Timer?.Dispose();
+                Log("Service Stopped.");
+            }
+            catch (Exception ex)
+            {
+                Log("Service OnStop Error " + ex);
+            }
+        }
+
+        public void obj_Timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            try
+            {
+                Log("Timer elapsed - starting file processing.");
+                if (!File.Exists(inputFile))
+                {
+                    Log("Input file not found: " + inputFile);
+                    return;
+                }
+                List<string> outputLines = new List<string>();
+                foreach (var line in File.ReadAllLines(inputFile).Select((text, idx) => new { text, idx }))
+                {
+                    string processedLine = line.text;
+                    string trimmed = line.text.TrimStart();
+
+                    if (trimmed.StartsWith("Message"))
+                    {
+                        processedLine = DecryptMessageLine(line.text);
+                    }
+                    else if (trimmed.StartsWith("{"))
+                    {
+                        try
+                        {
+                            string decryptedJson = DecryptJsonPacket(trimmed);
+                            outputLines.Add(decryptedJson);
+                            continue;
+                        }
+                        catch (Exception ex)
+                        {
+                            Log($"Error decrypting JSON at line {line.idx + 1}: {ex.Message}");
+                        }
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(processedLine))
+                    {
+                        outputLines.Add(processedLine);
+                    }
+                }
+                File.WriteAllLines(outputFile, outputLines);
+                Log("File processed successfully. Output saved to " + outputFile);
+            }
+            catch (Exception ex)
+            {
+                Log("Error in obj_Timer_Elapsed: " + ex);
+            }
+        }
+
+        private string DecryptMessageLine(string line)
+        {
+            try
+            {
+                var prefix = "Message   : ";
+                int idx = line.IndexOf(prefix);
+                if (idx == -1) return line;
+
+                string message = line.Substring(idx + prefix.Length).Trim();
+
+                int jsonStart = message.IndexOf('{');
+                if (jsonStart >= 0)
+                {
+                    string beforeJson = message.Substring(0, jsonStart).Trim();
+                    string jsonPart = message.Substring(jsonStart);
+
+                    string decryptedJson = DecryptJsonPacket(jsonPart);
+
+                    if (!string.IsNullOrEmpty(beforeJson))
+                        return prefix + beforeJson + " " + decryptedJson;
+                    else
+                        return prefix + decryptedJson;
+                }
+                else
+                {
+                    string decrypted = DecryptFromBase64(message);
+                    return prefix + decrypted;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log($"DecryptMessageLine failed: {ex.Message}");
+                return line;
+            }
+        }
+
+        private string DecryptJsonPacket(string raw)
+        {
+            try
+            {
+                int start = raw.IndexOf('{');
+                int end = raw.LastIndexOf('}');
+                if (start < 0 || end < start)
+                    return raw; 
+
+                string json = raw.Substring(start, end - start + 1);
+
+                var obj = JObject.Parse(json);
+                obj = (JObject)DecryptFields(obj);
+                return obj.ToString();
+            }
+            catch (Exception ex)
+            {
+                Log("Failed to parse or decrypt JSON: " + ex.Message);
+                return raw; 
+            }
+        }
+
+
+        private readonly HashSet<string> decryptableFields = new HashSet<string>
+        {
+            "batchId", "receiverBank", "transactionId",
+            "creditorTitle", "creditorIban", "debitorTitle", "debitorIban", "BatchId"
+        };
+
+        private JToken DecryptFields(JToken token)
+        {
+            if (token.Type == JTokenType.Object)
+            {
+                var obj = (JObject)token;
+
+                foreach (var property in obj.Properties().ToList())
+                {
+                    if (decryptableFields.Contains(property.Name))
+                    {
+                        string value = property.Value.ToString();
+                        if (IsValidBase64(value))
+                        {
+                            property.Value = new JValue(DecryptFromBase64(value));
+                        }
+                        else
+                        {
+                            Log($"Invalid Base64 string for field '{property.Name}': {value}");
+                        }
+                    }
+                    else
+                    {
+                        property.Value = DecryptFields(property.Value);
+                    }
+                }
+                return obj;
+            }
+            else if (token.Type == JTokenType.Array)
+            {
+                var array = (JArray)token;
+                for (int i = 0; i < array.Count; i++)
+                {
+                    array[i] = DecryptFields(array[i]);
+                }
+                return array;
+            }
+            return token;
+        }
+
+        private string DecryptFromBase64(string base64Input)
+        {
+            try
+            {
+                byte[] cipherBytes = Convert.FromBase64String(FixBase64String(base64Input));
+                using (Aes aes = Aes.Create())
+                {
+                    aes.Key = Key;
+                    aes.IV = IV;
+                    aes.Mode = CipherMode.CBC;
+                    aes.Padding = PaddingMode.PKCS7;
+
+                    using (ICryptoTransform decryptor = aes.CreateDecryptor())
+                    {
+                        byte[] plainBytes = decryptor.TransformFinalBlock(cipherBytes, 0, cipherBytes.Length);
+                        return Encoding.UTF8.GetString(plainBytes);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log($"DecryptFromBase64 failed: {ex.Message}");
+                return base64Input;
+            }
+        }
+
+        private bool IsValidBase64(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input)) return false;
+            if (input.Length % 4 != 0) return false;
+            try
+            {
+                Convert.FromBase64String(input);
+                return true;
+            }
+            catch { return false; }
+        }
+
+        private string FixBase64String(string base64)
+        {
+            if (string.IsNullOrWhiteSpace(base64)) return base64;
+
+            base64 = base64.Trim();
+            base64 = Regex.Replace(base64, @"[^A-Za-z0-9\+/=]", "");
+            int pad = base64.Length % 4;
+            if (pad > 0)
+                base64 = base64.PadRight(base64.Length + (4 - pad), '=');
+
+            return base64;
+        }
+
+        public void Log(string message)
+        {
+            File.AppendAllText(logFile, DateTime.Now + " - " + message + Environment.NewLine);
+        }
+    }
+}
+
+
+=> Progam.cs
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.ServiceProcess;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace WindowsService1
+{
+    internal static class Program
+    {
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        static void Main()
+        {
+            //ServiceBase[] ServicesToRun;
+            //ServicesToRun = new ServiceBase[]
+            //{
+            //    new Service1()
+            //};
+            //ServiceBase.Run(ServicesToRun);
+            Service1 service1 = new Service1();
+            service1.obj_Timer_Elapsed(null, null);
+
+        }
+    }
+}
+
+
+=> Service1.Designer.cs
+namespace WindowsService1
+{
+    partial class Service1
+    {
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        private void InitializeComponent()
+        {
+            components = new System.ComponentModel.Container();
+            this.ServiceName = "Service1";
+        }
+    }
+}
+
