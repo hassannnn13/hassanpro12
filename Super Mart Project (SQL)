@@ -1,0 +1,273 @@
+CREATE DATABASE IF NOT EXISTS supermart;
+USE supermart;
+
+CREATE TABLE products (
+    product_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE,
+    price DECIMAL(10,2) NOT NULL CHECK(price >= 0),
+    quantity INT DEFAULT 0 CHECK(quantity >= 0)
+);
+
+CREATE TABLE customers (
+    customer_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    contact VARCHAR(20),
+    loyalty_points INT DEFAULT 0,
+    CONSTRAINT chk_loyalty CHECK(loyalty_points >= 0)
+);
+
+CREATE TABLE employees (
+    employee_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    role ENUM('Cashier','Manager','Stocker','Helper','Cleaner','Guard') DEFAULT 'Cashier',
+    salary DECIMAL(10,2) NOT NULL CHECK(salary >= 10000)
+);
+
+CREATE TABLE suppliers (
+    supplier_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    contact VARCHAR(50)
+);
+
+CREATE TABLE sales (
+    sale_id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT,
+    employee_id INT,
+    sale_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    total_amount DECIMAL(10,2),
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id) ON DELETE SET NULL,
+    FOREIGN KEY (employee_id) REFERENCES employees(employee_id) ON DELETE SET NULL
+);
+
+
+CREATE TABLE sale_items (
+    sale_item_id INT AUTO_INCREMENT PRIMARY KEY,
+    sale_id INT,
+    product_id INT,
+    quantity INT CHECK(quantity > 0),
+    subtotal DECIMAL(10,2),
+    FOREIGN KEY (sale_id) REFERENCES sales(sale_id) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE CASCADE
+);
+
+CREATE TABLE inventory_logs (
+    log_id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT,
+    change_type ENUM('restock','sale','expired'),
+    quantity_changed INT,
+    change_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+INSERT INTO products (name, price, quantity) 
+VALUES
+('Milk', 150, 20), 
+('Bread', 100, 30), 
+('Eggs', 200, 50), 
+('Butter', 250, 15),
+('Juice', 180, 40),
+('Tea', 120, 35), 
+('Coffee', 300, 25), 
+('Cheese', 270, 22),
+('Sugar', 110, 60), 
+('Salt', 70, 55);
+
+INSERT INTO customers (name, contact, loyalty_points) 
+VALUES
+('Hassan', '03001234567', 10), 
+('Sara', '03111234567', 50),
+('Usman', '03211230000', 20), 
+('Hashir', '03451238900', 35),
+('Ehteshan', '03211234567', 60), 
+('Bilal', '03351230001', 15),
+('Ayesha', '03451230987', 45), 
+('Ahmad', '03021234598', 5),
+('Yousuf', '03121230008', 25),
+('Hamza', '03001239888', 70);
+
+INSERT INTO employees (name, role, salary) 
+VALUES
+('Samad', 'Manager', 50000), 
+('Taiyyab', 'Cashier', 25000),
+('Mir', 'Stocker', 20000), 
+('Hasan', 'Cleaner', 18000),
+('Aslam', 'Guard', 16000), 
+('Zohaib', 'Helper', 17000),
+('Rehan', 'Cashier', 22000), 
+('Ali', 'Manager', 52000),
+('Tariq', 'Stocker', 21000), 
+('Umair', 'Helper', 17500);
+
+INSERT INTO suppliers (name, contact) 
+VALUES
+('K&Ns', 'k&n@gmail.com'), 
+('LW', 'contact@lw.com'),
+('DairyFresh', 'info@dairyfresh.pk'), 
+('Cleaners', 'cleaners@supplies.pk'),
+('Walls', 'contact@wealls.com'), 
+('Grainish', 'support@grainish.pk'),
+('HygieneCo', 'info@hygieneco.com'), 
+('PackPro', 'hello@packpro.com'),
+('MegaFood', 'sales@megafood.pk'), 
+('Everyday Essentials', 'info@eeday.com');
+
+INSERT INTO sales (customer_id, employee_id, total_amount) 
+VALUES
+(1, 2, 1450.00),
+(2, 4, 1750.50),
+(3, 5, 980.00),
+(4, 1, 1260.00),
+(5, 3, 1999.99),
+(6, 6, 750.00),
+(7, 8, 845.00),
+(8, 9, 1345.75),
+(9, 10, 2200.25),
+(10, 1, 1150.00); 
+
+INSERT INTO sale_items (sale_id, product_id, quantity, subtotal) 
+VALUES
+(1, 5, 3, 450.00),
+(2, 10, 2, 140.00),
+(3, 1, 4, 600.00),
+(4, 2, 1, 100.00),
+(5, 3, 2, 400.00),
+(6, 4, 5, 1250.00),
+(7, 6, 1, 120.00),
+(8, 7, 6, 1800.00),
+(9, 8, 2, 540.00),
+(10, 9, 3, 330.00);
+
+INSERT INTO inventory_logs (product_id, change_type, quantity_changed) 
+VALUES
+(5, 'sale', 3),
+(10, 'sale', 2),
+(1, 'sale', 4),
+(7, 'sale', 1),
+(2, 'sale', 2),
+(3, 'sale', 5),
+(4, 'sale', 1),
+(6, 'sale', 6),
+(8, 'sale', 2),
+(9, 'sale', 3);
+
+SELECT * FROM products;
+SELECT * FROM customers;
+SELECT * FROM employees;
+SELECT * FROM suppliers;
+SELECT * FROM sales;
+SELECT * FROM sale_items;
+SELECT * FROM inventory_logs;
+
+SELECT * FROM products WHERE name LIKE '%Mil%';
+SELECT * FROM customers WHERE name LIKE '%ah%';
+
+SELECT name, price FROM products WHERE price BETWEEN 100 AND 300;
+SELECT name FROM customers WHERE loyalty_points > 40;
+SELECT name FROM employees WHERE role = 'Cashier';
+SELECT name FROM suppliers WHERE contact LIKE '%@pk';
+
+SELECT COUNT(*) FROM products;
+SELECT AVG(price) FROM products;
+SELECT SUM(quantity) FROM products;
+SELECT MAX(price), MIN(price) FROM products;
+
+SELECT role, COUNT(*) FROM employees GROUP BY role;
+SELECT role, AVG(salary) FROM employees GROUP BY role HAVING AVG(salary) > 20000;
+
+SELECT name FROM customers WHERE loyalty_points = (SELECT MAX(loyalty_points) FROM customers);
+SELECT * FROM employees WHERE salary BETWEEN 20000 AND 30000;
+SELECT * FROM products WHERE quantity IN (20, 40, 60);
+SELECT * FROM customers WHERE name LIKE 'A%';
+SELECT * FROM employees WHERE NOT role = 'Manager';
+
+SELECT c.name AS customer, s.total_amount FROM customers c INNER JOIN sales s ON c.customer_id = s.customer_id;
+SELECT si.sale_id, p.name FROM sale_items si LEFT JOIN products p ON si.product_id = p.product_id;
+SELECT name FROM customers UNION SELECT name FROM employees UNION SELECT name FROM suppliers;
+
+SELECT name, UPPER(name), LOWER(name), LENGTH(name), REPLACE(name, 'a', '@') FROM customers;
+SELECT name, CONCAT(name, ' - Rs.', price) FROM products;
+
+SELECT sale_id, TIMESTAMPDIFF(DAY, sale_date, CURDATE()) AS age FROM sales;
+
+SELECT name FROM products WHERE price > ALL (SELECT price FROM products WHERE quantity < 20);
+SELECT name FROM products WHERE quantity < ANY (SELECT quantity FROM products WHERE price > 250);
+
+CREATE TEMPORARY TABLE IF NOT EXISTS low_stock_products AS SELECT * FROM products WHERE quantity < 20;
+CREATE TEMPORARY TABLE IF NOT EXISTS frequent_customers AS SELECT * FROM customers WHERE loyalty_points > 40;
+
+CREATE TABLE backup_employees LIKE employees;
+INSERT INTO backup_employees SELECT * FROM employees;
+
+CREATE VIEW top_loyal_customers AS SELECT name, loyalty_points FROM customers WHERE loyalty_points > 50;
+SELECT * FROM top_loyal_customers;
+
+SET SQL_SAFE_UPDATES = 0;
+UPDATE products SET price = price + 10 WHERE price < 150;
+UPDATE employees SET salary = salary + 2000 WHERE role = 'Manager';
+UPDATE customers SET loyalty_points = loyalty_points + 10 WHERE loyalty_points < 20;
+
+DELETE FROM employees WHERE salary < 16000 AND role = 'Helper';
+DELETE FROM customers WHERE loyalty_points = 0;
+DELETE FROM products WHERE quantity < 5;
+
+RENAME TABLE employees TO mart_employees;
+RENAME TABLE mart_employees TO employees;
+
+ALTER TABLE employees ADD COLUMN email VARCHAR(100);
+ALTER TABLE employees DROP COLUMN email;
+ALTER TABLE products MODIFY price DECIMAL(12,2);
+
+TRUNCATE TABLE backup_employees;
+TRUNCATE TABLE low_stock_products;
+
+SELECT role, AVG(salary) FROM employees GROUP BY role;
+SELECT role FROM employees GROUP BY role HAVING COUNT(*) > 2;
+SELECT product_id FROM sale_items GROUP BY product_id HAVING SUM(quantity) > 10;
+
+SELECT name FROM customers WHERE loyalty_points IN (10, 15, 25);
+SELECT * FROM products WHERE price BETWEEN 200 AND 400;
+SELECT * FROM employees WHERE name LIKE 'F%';
+SELECT * FROM customers WHERE NOT loyalty_points < 30;
+
+SELECT name FROM products WHERE price = (SELECT MAX(price) FROM products);
+SELECT name FROM employees WHERE salary = (SELECT MIN(salary) FROM employees);
+SELECT name FROM customers WHERE loyalty_points = (SELECT MAX(loyalty_points) FROM customers);
+
+SELECT * FROM suppliers WHERE contact LIKE '%gmail.com';
+SELECT * FROM sales WHERE total_amount > 1000;
+SELECT employee_id, COUNT(*) FROM sales GROUP BY employee_id;
+SELECT customer_id, COUNT(*) FROM sales GROUP BY customer_id;
+
+SELECT * FROM inventory_logs WHERE change_type = 'restock';
+SELECT product_id, SUM(quantity_changed) FROM inventory_logs GROUP BY product_id;
+
+CREATE OR REPLACE VIEW high_loyalty_customers AS
+SELECT name, loyalty_points
+FROM customers
+WHERE loyalty_points >= 50;
+
+CREATE VIEW product_stock_summary AS
+SELECT name, quantity,
+       CASE 
+         WHEN quantity < 20 THEN 'Low Stock'
+         WHEN quantity BETWEEN 20 AND 50 THEN 'Medium Stock'
+         ELSE 'High Stock'
+       END AS stock_status
+FROM products;
+
+DELIMITER $$
+CREATE PROCEDURE TopPaidEmployees()
+BEGIN
+  SELECT name, salary
+  FROM employees
+  WHERE salary = (SELECT MAX(salary) FROM employees);
+END $$
+DELIMITER ;
+
+SELECT e.name AS employee_name, COUNT(s.sale_id) AS total_sales, SUM(s.total_amount) AS total_amount
+FROM sales s
+JOIN employees e ON s.employee_id = e.employee_id
+GROUP BY e.employee_id
+ORDER BY total_amount DESC;
+
+ DROP database supermart;
