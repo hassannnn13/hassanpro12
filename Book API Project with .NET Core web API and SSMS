@@ -1,0 +1,144 @@
+=> Models => Books.cs
+namespace BooksApi.Models
+{
+    public class Books
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Author { get; set; }
+        public int YearPublished { get; set; }
+        public string Genre { get; set; }
+    }
+}
+
+
+=> Controllers => BooksController.cs
+using BooksApi.Data;
+using BooksApi.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+namespace BookApi.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class BooksController : ControllerBase
+    {
+        private readonly BooksDbContext _context;
+        public BooksController(BooksDbContext context)
+        {
+            _context = context;
+        }
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Books>>> GetAll()
+        {
+            return await _context.Books.ToListAsync();
+        }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Books>> GetById(int id)
+        {
+            var book = await _context.Books.FindAsync(id);
+            if (book == null) return NotFound();
+            return book;
+        }
+        [HttpPost]
+        public async Task<ActionResult<Books>> Create(Books book)
+        {
+            _context.Books.Add(book);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction(nameof(GetById), new { id = book.Id }, book);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, Books updatedBook)
+        {
+            var book = await _context.Books.FindAsync(id);
+            if (book == null) return NotFound();
+            book.Title = updatedBook.Title;
+            book.Author = updatedBook.Author;
+            book.YearPublished = updatedBook.YearPublished;
+            book.Genre = updatedBook.Genre;
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var book = await _context.Books.FindAsync(id);
+            if (book == null) return NotFound();
+            _context.Books.Remove(book);
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
+    }
+}
+
+
+=> New Folder(Data) => BooksDbContext.cs
+using Microsoft.EntityFrameworkCore;
+using BooksApi.Models;
+namespace BooksApi.Data
+{
+    public class BooksDbContext : DbContext
+    {
+        public BooksDbContext(DbContextOptions<BooksDbContext> options) : base(options) { }
+        public DbSet<Books> Books { get; set; }  // Books table
+    }
+}
+
+
+=> Program.cs
+using Microsoft.EntityFrameworkCore;
+using BooksApi.Data;
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<BooksDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+var app = builder.Build();
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+app.UseHttpsRedirection();
+app.UseAuthorization();
+app.MapControllers();
+app.Run();
+
+
+=> appsettings.json
+{
+    "Logging": {
+        "LogLevel": {
+            "Default": "Information",
+            "Microsoft.AspNetCore": "Warning"
+        }
+    },
+    "AllowedHosts": "*",
+    *"ConnectionStrings": {
+        "DefaultConnection": "Server=INTHASSANIDREES;Database=BookDb;Trusted_Connection=True;"
+    }* //we have to add this line which is in the stars that is one of the steps that use to connect the database.
+}
+
+
+run this in Package Manager Console to connect with database
+Install-Package Microsoft.EntityFrameworkCore → main ORM
+Install-Package Microsoft.EntityFrameworkCore.SqlServer → SQL Server support ke liye
+Install-Package Microsoft.EntityFrameworkCore.Tools → migration commands ke liye
+
+Check .csproj for these lines:
+<ItemGroup>
+  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
+  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.0" />
+  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.0">
+    <PrivateAssets>all</PrivateAssets>
+    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+  </PackageReference>
+</ItemGroup>
+
+then use these:
+dotnet ef migrations add InitialCreate --project BookApi
+dotnet ef database update --project BookApi
+
+
