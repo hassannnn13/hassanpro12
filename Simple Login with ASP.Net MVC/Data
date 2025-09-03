@@ -1,0 +1,70 @@
+=> Models => New Folder(Data) => UserStore.cs
+using SimpleLoginMvc.Models;
+using System.Security.Cryptography;
+using System.Text;
+
+namespace SimpleLoginMvc.Data
+{
+    public static class UserStore{
+        private static readonly List<User> _users = new();
+        private static int _nextId = 1;
+
+        // Seed a demo user: username=admin password=Password123!
+        static UserStore()
+        {
+            CreateUser("admin", "Admin User", "Password123!", "Admin");
+        }
+
+        public static IEnumerable<User> GetAll() => _users;
+
+        public static User? GetByUsername(string username) =>
+            _users.FirstOrDefault(u => u.Username.Equals(username, StringComparison.OrdinalIgnoreCase));
+
+        public static User? GetById(int id) => _users.FirstOrDefault(u => u.Id == id);
+
+        public static User CreateUser(string username, string displayName, string password, string role = "User")
+        {
+            // hash password
+            var (salt, hash) = HashPassword(password);
+
+            var user = new User
+            {
+                Id = _nextId++,
+                Username = username,
+                DisplayName = displayName,
+                PasswordSalt = Convert.ToBase64String(salt),
+                PasswordHash = Convert.ToBase64String(hash),
+                Role = role
+            };
+
+            _users.Add(user);
+            return user;
+        }
+
+        public static bool ValidateCredentials(string username, string password, out User? user)
+        {
+            user = GetByUsername(username);
+            if (user == null) return false;
+
+            var salt = Convert.FromBase64String(user.PasswordSalt);
+            var expectedHash = Convert.FromBase64String(user.PasswordHash);
+
+            using var derive = new Rfc2898DeriveBytes(password, salt, 100_000, HashAlgorithmName.SHA256);
+            var actualHash = derive.GetBytes(32);
+
+            return CryptographicOperations.FixedTimeEquals(actualHash, expectedHash);
+        }
+
+        private static (byte[] salt, byte[] hash) HashPassword(string password)
+        {
+            byte[] salt = new byte[16];
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(salt);
+            }
+            using var derive = new Rfc2898DeriveBytes(password, salt, 100_000, HashAlgorithmName.SHA256);
+            byte[] hash = derive.GetBytes(32);
+            return (salt, hash);
+        }
+    }
+}
