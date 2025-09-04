@@ -1,1 +1,163 @@
+=> Models => Employee.cs
+using System.ComponentModel.DataAnnotations.Schema;
+namespace EmployeeApi.Models
+{
+    [Table("Employee")]   
+    public class Employee
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Position { get; set; }
+        public int Salary { get; set; }
+        public string Department { get; set; }
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Address { get; set; }
+    }
+}
 
+
+
+=> Controllers => EmployeeController.cs
+using EmployeeApi.Data;
+using EmployeeApi.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+namespace EmployeeApi.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class EmployeeController : ControllerBase
+    {
+        private readonly EmployeeDbContext _context;
+        public EmployeeController(EmployeeDbContext context)
+        {
+            _context = context;
+        }
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Employee>>> GetAll()
+        {
+            return await _context.Employees.ToListAsync();
+        }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Employee>> GetById(int id)
+        {
+            var employee = await _context.Employees.FindAsync(id);
+            if (employee == null) return NotFound();
+            return employee ;
+        }
+        [HttpPost]
+        public async Task<ActionResult<Employee>> Create(Employee employee)
+        {
+            _context.Employees.Add(employee);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction(nameof(GetById), new { id = employee.Id }, employee);
+        }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, Employee updatedEmployee)
+        {
+            var employee = await _context.Employees.FindAsync(id);
+            if (employee == null) return NotFound();
+            employee.Name = updatedEmployee.Name;
+            employee.Position = updatedEmployee.Position;
+            employee.Salary = updatedEmployee.Salary;
+            employee.Department = updatedEmployee.Department;
+            employee.Email = updatedEmployee.Email;
+            employee.PhoneNumber = updatedEmployee.PhoneNumber;
+            employee.Address = updatedEmployee.Address;
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var employee = await _context.Employees.FindAsync(id);
+            if (employee == null) return NotFound();
+            _context.Employees.Remove(employee);
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
+    }
+}
+
+
+
+=> New Folder(Data) => EmployeeDbContext.cs
+using EmployeeApi.Models;
+using Microsoft.EntityFrameworkCore;
+namespace EmployeeApi.Data
+{
+    public class EmployeeDbContext : DbContext
+    {
+        public EmployeeDbContext(DbContextOptions<EmployeeDbContext> options) : base(options) { }
+        public DbSet<Employee> Employees { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Employee>().ToTable("Employee"); // force singular table
+        }
+    }
+}
+
+
+
+=> Program.cs
+using Microsoft.EntityFrameworkCore;
+using EmployeeApi.Data;
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<EmployeeDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+var app = builder.Build();
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+app.UseHttpsRedirection();
+app.UseAuthorization();
+app.MapControllers();
+app.Run();
+
+
+=> appsettings.json
+{
+    "Logging": {
+        "LogLevel": {
+            "Default": "Information",
+            "Microsoft.AspNetCore": "Warning"
+        }
+    },
+    "AllowedHosts": "*",
+    "ConnectionStrings": {
+        "DefaultConnection": "Server=INTHASSANIDREES;Database=EmployeeDb;Trusted_Connection=True;Encrypt=False;"
+    }
+}
+
+
+run this in Package Manager Console to connect with database
+Install-Package Microsoft.EntityFrameworkCore → main ORM
+Install-Package Microsoft.EntityFrameworkCore.SqlServer → SQL Server support ke liye
+Install-Package Microsoft.EntityFrameworkCore.Tools → migration commands ke liye
+
+Check .csproj for these lines:
+<ItemGroup>
+  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
+  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.0" />
+  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.0">
+    <PrivateAssets>all</PrivateAssets>
+    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+  </PackageReference>
+</ItemGroup>
+
+then use these:
+Drop-Database
+dotnet ef migrations add InitialCreate --project EmployeeApi
+dotnet ef database update --project EmployeeApi
+
+
+
+In SSMS:
+Database => EmployeeDb => Tables => NewTable(Employee)
+Query => SELECT *FROM Employee;
