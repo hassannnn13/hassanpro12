@@ -43,3 +43,22 @@ namespace HelloWorld
 	}
 }
 }
+
+
+3.
+using System;
+namespace HelloWorld
+{
+	public class Factorial
+	{
+	  public static void Main(){
+		Console.WriteLine("Enter a number:"); 
+		int n =Convert.ToInt32(Console.ReadLine()); 
+        int result = 1;
+		for(int i = 1; i<=n; i++ ){ 
+        result = result*i;		
+     }
+		Console.WriteLine(result);
+	  }
+	}
+}
