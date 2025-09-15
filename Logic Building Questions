@@ -41,7 +41,7 @@ namespace HelloWorld
 	    second = next;
 	  }
 	}
-}
+  }
 }
 
 
@@ -60,5 +60,78 @@ namespace HelloWorld
      }
 		Console.WriteLine(result);
 	  }
-	}
+   }
+}
+
+
+4.
+using System;
+namespace HelloWorld{
+public class PrimeNo
+{
+    public static void Main(string[] args){
+        Console.WriteLine("Enter a number:");
+        int n = Convert.ToInt32(Console.ReadLine());
+        if (n<=1){
+            Console.WriteLine("Not prime.");
+        }
+        bool isPrime = true;
+        for(int i = 2; i<=n-1;i++){
+            if (n%i == 0){
+                isPrime = false;
+                break;
+            }
+        }
+            if (isPrime){
+                Console.WriteLine("Prime.");
+            }else{
+                Console.WriteLine("Not prime.");
+            }
+        }
+    }
+}
+
+5.
+using System;
+namespace HelloWorld{
+public class PrimeNo
+{
+    public static void Main(string[] args){
+        int[] arr = {10,20,300,45};
+        int max = arr[0];
+        
+        foreach(int n in arr){
+            if (n > max){
+            max = n;
+            }
+        }
+        Console.WriteLine(max);
+    }
+  }
+}
+
+
+6.
+using System;
+namespace HelloWorld{
+public class Armstrong
+{
+    public static void Main(string[] args){
+        Console.WriteLine("Enter a number:");
+        int n = Convert.ToInt32(Console.ReadLine());
+        int temp = n;
+        int sum = 0;
+        do{
+            int digit = n % 10;
+            sum = sum + (digit * digit * digit);
+            n= n/10;
+            } while(n > 0);
+        if (temp.Equals(sum)){
+            Console.WriteLine("Armstrong");
+        }
+        else{
+            Console.WriteLine("Not Armstrong");
+        }
+      }
+   }
 }
