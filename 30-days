@@ -1,0 +1,106 @@
+Day 1 → HTML Basics
+HTML = Structure of a webpage (skeleton).
+Tags: <h1> → headings, <p> → paragraphs, <a> → links, <img> → images.
+Attributes add extra info: src, href, alt, title.
+Semantic tags (like <header>, <footer>, <article>) make content meaningful for both browsers and humans.
+Hierarchy matters: Parent tags wrap child tags.
+
+Day 2 → Lists & Tables
+Lists:
+Ordered (<ol>) → numbered.
+Unordered (<ul>) → bullet points.
+Tables:
+<table> → wrapper.
+<tr> → row.
+<th> → header cell (bold, centered by default).
+<td> → data cell.
+Good for structured info like timetables, meal plans, data.
+
+Day 3 → Forms
+Used for user input (login, signup, survey).
+Inputs: text, email, password, radio, checkbox.
+<select> → dropdown, <textarea> → multi-line text.
+Always give labels with for="id" → improves accessibility.
+Form actions: method="get" (visible in URL), method="post" (hidden, safer).
+
+Day 4 → CSS Basics
+CSS = Styling (makeup of the webpage).
+3 Ways to add CSS:
+Inline (style="") → quick but messy.
+Internal (<style> in <head>) → for single file.
+External (.css file linked with <link>) → best practice.
+Selectors:
+Element selector (p {}) → applies to all <p>.
+Class selector (.class {}) → reusable.
+ID selector (#id {}) → unique.
+Cascading rule: Inline > ID > Class > Element.
+
+Day 5 → Colors, Borders, Boxes
+Colors: named (red), hex (#ff0000), rgb (rgb(255,0,0)), rgba (with transparency).
+Borders: border: width style color; (e.g., 2px solid black).
+Box Model:
+content → padding → border → margin.
+Always remember: Everything in CSS is a box.
+
+Day 6 → Tables + Styling
+border-collapse: collapse; → removes double borders in tables.
+Cell padding gives breathing space inside cells.
+Styling with classes makes tables look cleaner.
+Example: Highlight alternate rows using nth-child().
+
+Day 7 → Backgrounds & Fonts
+Background properties:
+background-color → set color.
+background-image → add images.
+background-repeat → repeat or not.
+background-size: cover; → fill whole area.
+background-attachment: fixed; → parallax effect.
+Fonts:
+font-family: Arial, sans-serif; → fallback system.
+Use Google Fonts for modern typography.
+text-shadow adds depth.
+text-decoration → underline/none/overline.
+
+Day 8 → Display & Position
+Display types:
+block → takes full width (e.g., <div>).
+inline → sits in a line (e.g., <span>).
+inline-block → inline but behaves like block.
+none → hides element.
+Position properties:
+static → default, stays in normal flow.
+relative → moves relative to itself.
+absolute → placed relative to nearest positioned parent.
+fixed → sticks to viewport (e.g., navbars).
+sticky → acts like relative but sticks when scrolling.
+Flexbox vs Grid:
+Flexbox → Best for 1D layouts (row or column). Example: aligning Goals + Hobbies side by side.
+Grid → Best for 2D layouts (rows + columns). Example: full page layout with header, sidebar, main, footer.
+
+Day 9 – Grid + Flexbox + Responsiveness Basics
+Grid → Best for 2D layouts (rows + columns). Example: Goals + Hobbies.
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 20px;
+Flexbox → Best for 1D layouts (row OR column). Example: Education + Learning.
+display: flex;
+justify-content: space-between;
+align-items: flex-start;
+Combining Grid + Flexbox → Common in real websites (Grid for sections, Flexbox inside for alignment).
+Gap → Built-in spacing in Grid/Flexbox. Better than margin.
+Responsiveness → Start by making side-by-side content stack vertically on small screens.
+
+Day 10 – Media Queries + Responsive Design
+Responsive Design → Adjusts automatically for desktop, tablet, mobile.
+Media Query Syntax →
+@media (max-width: 700px) {
+  .box { flex-direction: column; }
+}
+Breakpoints (common)
+1200px → Large desktop
+992px → Small laptop / landscape tablet
+768px → Tablet portrait
+576px → Mobile
+Mobile-First Approach → Write default styles for mobile, then use min-width for larger screens.
+Desktop-First Approach → Write default styles for desktop, then use max-width for smaller screens.
+Testing Responsiveness → Shrink browser window or use Chrome DevTools (Ctrl+Shift+I → Toggle device toolbar).
