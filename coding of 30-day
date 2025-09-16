@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>About Me</title>
+    <style>
+      body {
+        background: lightblue url('https://www.w3schools.com/css/img_lights.jpg') no-repeat center center fixed;
+        background-size: cover;
+        font-family: Arial, sans-serif;
+      }
+
+      h1 {
+        color: white;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.6); 
+        padding: 10px;
+        border-radius: 10px;
+        font-family: 'Poppins', sans-serif;
+        text-decoration: underline;
+        text-shadow: 2px 2px 4px black;
+      }
+
+      .dump {
+        color: green;
+      }
+
+      .tab, .tab th, .tab td {
+        color: darkblue;
+        border: 2px solid black;
+        border-collapse: collapse;
+        padding: 10px;
+        background-color: rgba(255, 255, 255, 0.8); 
+      }
+
+      .box {
+        width: 200px; 
+        padding: 20px;    
+        border: 1px solid black; 
+        margin: 15px;  
+        background-color: rgba(255, 255, 255, 0.7);  
+        font-family: Arial,sans-serif;
+        line-height: 1.5;
+        font-style: italic;
+      }
+
+      .hello {
+        border: 5px solid black;
+        margin:10px;
+        padding: 15px;
+        width:200px;
+        background-color: rgba(0, 0, 0, 0.1); 
+        position: relative;
+      }
+
+      #about {
+        color: red;
+      }
+
+      .detail {
+        color: green;
+        padding: 5px;
+      }
+      .merge{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .goals,.hobbies{
+        background-color: rgba(255,255,255,0.7);
+        padding: 10px;
+        border-radius: 10px;
+        margin: 10px 0;
+      }
+      @media (max-width: 768px) {
+  .merge {
+    grid-template-columns: 1fr; 
+  }
+}
+.practice{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.education, .learning{
+  background-color: rgba(255,255,255,0.6);
+  margin: 20px 0;
+  border-radius: 20px;
+  padding: 10px;
+}
+@media(max-width: 768px){
+  .practice{
+  flex-direction: column;
+  }
+}
+@media (max-width: 500px) {
+  body {
+    font-size: 14px; 
+  }
+  h1 {
+    font-size: 20px;
+  }
+  .box, .goals, .hobbies, .education, .learning {
+    padding: 8px; 
+    margin: 5px;
+  }
+}
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  </head>
+  <body>
+   <h1>Hassan Idrees</h1>
+   <p class="detail">My name is Hassan and I am learning Web development.</p>
+
+  <div class="merge">
+   <div class="goals">
+   <h2>Goals</h2>
+   <ol class="dump">
+     <li>Great Physique</li>
+     <li>Great Businessman</li>
+     <li>Pray five times and good islamic man</li>
+   </ol>
+   </div>
+   
+   <div class="hobbies">
+   <h2>Hobbies</h2>
+   <ul class="box">
+     <li>Swimming</li>
+     <li>Workout</li>
+     <li>Sports Activity</li>
+   </ul>
+   </div>
+</div>
+<div class="practice">
+  <div class="education">
+    <h2>Education</h2>
+    <p>Matriculation:The Crescent Academy</p>
+    <p>College:Commecs College</p>
+    <p>University:DHA Suffa University</p>
+  </div>
+  
+  <div class="learning">
+    <h2>learning</h2>
+  <ol>
+    <li>HTML</li>
+    <li>CSS & Tailwind CSS</li>
+    <li>JavaScript & Angular JS</li>
+  </ol>
+  </div>
+</div>
+   <table border ="1" class="tab">
+     <tr>
+       <th>Meal</th>
+       <th>Time</th>
+       <th>Nutrients</th>
+     </tr>
+     <tr>
+       <td>Three eggs with bread</td>
+       <td>Breakfast</td>
+       <td>High protein</td>
+     </tr>
+     <tr>
+       <td>Oats with milk and nuts</td>
+       <td>Lunch</td>
+       <td>High protein with carbs</td>
+     </tr>
+     <tr>
+       <td>Chicken Meal</td>
+       <td>Dinner</td>
+       <td>High protein</td>
+     </tr>
+   </table>
+
+   <div class="hello">
+    <h2>Workout Routine</h2>
+    <ul>
+      <li>Day 1
+        <ul>
+          <li>Chest</li>
+          <li>Shoulder (Front Delts and Side Delts)</li>
+        </ul>
+      </li>
+      <li>Day 2
+        <ul>
+          <li>Back</li>
+          <li>Shoulder (Rear Delts and Traps)</li>
+        </ul>
+      </li>
+      <li>Day 3
+        <ul>
+          <li>Arms</li>
+        </ul>
+      </li>
+      <li>Day 4
+        <ul>
+          <li>Legs</li>
+          <li>Abs</li>
+        </ul>
+      </li>
+    </ul>
+   </div>
+
+   <h2>Sign Up</h2>
+   <form action="/submit" method="post">
+     <label for="name">Name:</label>
+     <input type="text" id="name" name="name" placeholder="Enter your name"><br>
+
+     <label for="email">Email:</label>
+     <input type="email" id="email" name="email"><br>
+
+     <label for="password">Password:</label>
+     <input type="password" id="password" name="password"><br>
+
+     <p>Gender:</p>
+     <label for="male"><input type="radio" id="male" name="gender" value="male"> Male</label>
+     <label for="female"><input type="radio" id="female" name="gender" value="female"> Female</label>
+
+     <p>Hobbies</p>
+     <input type="checkbox" name="hobby" value="swimming"> Swimming
+     <input type="checkbox" name="hobby" value="reading"> Reading
+     <input type="checkbox" name="hobby" value="gaming"> Gaming <br>
+
+     <label for="country">Country:</label>
+     <select id="country" name="country">
+       <option value="pk">Pakistan</option>
+       <option value="usa">USA</option>
+       <option value="ind">India</option>
+     </select>
+
+     <br><br>
+     <label for="about">About Me:</label><br>
+     <textarea id="about" name="about" rows="4" cols="40"></textarea><br><br>
+
+     <input type="submit" value="Register">
+   </form>
+  </body>
+</html>
