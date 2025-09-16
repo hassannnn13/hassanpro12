@@ -104,6 +104,30 @@
     margin: 5px;
   }
 }
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+  width: 250px;
+  padding: 8px;
+  border: 2px solid gray;
+  border-radius: 8px;
+  margin: 5px 0;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+  
+  input:focus,
+  textarea:focus,
+  select:focus{
+    border-color: blue;
+    box-shadow: 0 0 8px lightblue;
+    outline: none;
+  }
+  input[type="checkbox"]:checked,
+input[type="radio"]:checked {
+  accent-color: blue;
+}
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   </head>
