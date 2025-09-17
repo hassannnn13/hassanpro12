@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hassan Idrees - Personal Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background-color: black;
+  padding: 10px 0;
+  color: white;
+}
+
+.box {
+  max-width: 1500px;
+  padding: 0 20px;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 10px;
+  max-width:100px;
+  font-family:'Poppins', Arial;
+  text-decoration: underline;
+}
+nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav ul{
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+nav ul li a{
+ color: white;
+ text-decoration: none;
+ font-family: 'Poppins',Sans-Serif;
+}
+nav ul li a:hover{
+  transform: scale(1.1);
+  background-color: grey;
+  padding: 5px;
+  border-radius: 6px;
+}
+nav ul button{
+  border:none;
+  background-color: rgba(255,255,255,0.8);
+  padding: 8px;
+  border-radius: 6px;
+  color: white;
+  font-family: 'Poppins',Sans-Serif;
+  text-shadow: 2px 2px 4px black;
+}
+nav ul button:hover{
+  transform: scale(1.1);
+  cursor: pointer;
+}
+.about h2{
+  font-size: 80px;
+  font-family: papyrus ;
+   margin: 5px;
+}
+.about p{
+  font-family: Times New Roman;
+  margin: 10px;
+  box-shadow: 0 0 4px grey;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 18px;
+}
+#resume{
+  border:none;
+  background-color:purple;
+  padding: 8px;
+  margin: 10px;
+  width: 150px;
+  height:40px;
+  border-radius: 6px;
+  color: white;
+  font-family: 'Poppins',Sans-Serif;
+}
+#resume:hover{
+  transform: scale(1.1);
+  cursor: pointer;
+}
+#contact{
+  border:1px solid black;
+  background-color:white;
+  padding: 8px;
+  margin: 10px;
+  width: 150px;
+  height:40px;
+  border-radius: 6px;
+  color: black;
+  font-family: 'Poppins',Sans-Serif;
+}
+#contact:hover{
+  transform: scale(1.1);
+  cursor: pointer;
+}
+.smallinfo{
+  display: flex;
+  flex-direction: row;
+  margin: 15px;
+  gap: 10px;
+  font-family: Times New Roman;
+  font-size:15px;
+}
+.address, .cont{
+  box-shadow: 0 0 4px grey;
+  border-radius: 6px;
+  padding: 10px;
+}
+h3{
+  font-family: Times New Roman;
+  font-size:20px;
+    margin: 15px;
+}
+.projects{
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+  gap: 20px;
+  font-family: Times New Roman;
+  font-size:20px;
+}
+.java, .sql {
+  box-shadow: 0 0 4px grey;
+  margin: 10px;
+  border-radius: 6px;
+  padding: 10px;
+  background: white;
+  flex: 1;
+  transition: transform 0.3s;
+}
+.java:hover, .sql:hover{
+  transform: scale(1.05);
+}
+    </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  </head>
+  <body>
+     <header>
+       <div class="box">
+         <nav>
+           <h1 class="logo">HI</h1>
+           <ul>
+             <li><a href="about.html">About</a></li>
+             <li><a href="goals.html">Goals</a></li>
+             <li><a href="projects.html">Projects</a></li>
+             <li><a href="contact.html">Contact</a></li>
+             <button type="button">Github</button>
+             <button type="button">Linkedin</button>
+           </ul>
+         </nav>
+       </div>
+     </header>
+     <main>
+     <section class="about">
+     <h2>Hi-I'm Hassan Idrees!</h2>
+     <p>A motivated Software Engineering student with a basic understanding of programming, databases, and web technologies. Eager to learn and apply technical skills in real-world projects.</p>
+     <button id="resume" type="button">Resume</button>
+     <button id="contact" type="button">Contact</button>
+     </section>
+     <div class="smallinfo">
+       <div class="address">
+         <span><p>KARACHI,PAKISTAN.</p></span>
+       </div>
+       <div class="cont">
+         <span><p>03313473867</p></span>
+       </div>
+     </div>
+    <h2 style="text-decoration:underline; margin:15px">Projects</h2>
+     <div class="projects">
+       <div class="java">
+         <span><h4>Java & SQL Project-Super Mart Management System</h4></span>
+         <span>
+           <ul>
+             <li>Designed and implemented a console-based inventory management system for products, employees, customers, and sales.</li>
+             <li>Utilized SQL queries and Java CRUD operations to manage real-time data and simulate sales workflows.</li>
+             <li>Demonstrated skills in relational database design, OOP, and team collaboration.</li>
+           </ul>
+         </span>
+       </div>
+       <div class="sql">
+         <span><h4>Java (OOP) Project-Fitness Tracker Application</h4></span>
+         <span>
+           <ul>
+             <li>Developed a fitness tracking application to log daily workouts and calculate calories burned.</li>
+             <li>Applied core OOP concepts like inheritance, abstraction, and encapsulation.</li>
+             <li>Implemented basic file I/O to store and retrieve user fitness records.</li>
+           </ul>
+         </span>
+       </div>
+     </div>
+     </main>
+  </body>
+</html>
