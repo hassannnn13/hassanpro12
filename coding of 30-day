@@ -128,13 +128,37 @@ select {
 input[type="radio"]:checked {
   accent-color: blue;
 }
+input[type="submit"]{
+  background-color: blue;
+  color:white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3 ease;
+}
+input[type="submit"]:hover{
+  background-color: darkblue;
+  transform: scale(1.1);
+}
+.square{
+  width: 100px;
+  height: 150px;
+  background: blue;
+  color: white;
+  transition: transform 1s ease, background 1s ease;
+}
+.square:hover{
+  transform: scale(1.5) rotate(45deg);
+  background-color: green;
+}
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   </head>
   <body>
    <h1>Hassan Idrees</h1>
    <p class="detail">My name is Hassan and I am learning Web development.</p>
-
+<div class="square"></div>
   <div class="merge">
    <div class="goals">
    <h2>Goals</h2>
@@ -229,7 +253,7 @@ input[type="radio"]:checked {
      <input type="text" id="name" name="name" placeholder="Enter your name"><br>
 
      <label for="email">Email:</label>
-     <input type="email" id="email" name="email"><br>
+     <input type="email" id="email" name="email" required><br>
 
      <label for="password">Password:</label>
      <input type="password" id="password" name="password"><br>
@@ -253,7 +277,7 @@ input[type="radio"]:checked {
      <br><br>
      <label for="about">About Me:</label><br>
      <textarea id="about" name="about" rows="4" cols="40"></textarea><br><br>
-
+     <input type="text" value="Not Editable" disabled><br>
      <input type="submit" value="Register">
    </form>
   </body>
