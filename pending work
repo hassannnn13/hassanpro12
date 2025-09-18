@@ -8,7 +8,9 @@
   margin: 0;
   padding: 0;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 body {
   font-family: Arial, sans-serif;
 }
@@ -67,12 +69,12 @@ nav ul button:hover{
   transform: scale(1.1);
   cursor: pointer;
 }
-.about h2{
+#a h2{
   font-size: 80px;
   font-family: papyrus ;
    margin: 5px;
 }
-.about p{
+#a p{
   font-family: Times New Roman;
   margin: 10px;
   box-shadow: 0 0 4px grey;
@@ -90,10 +92,13 @@ nav ul button:hover{
   border-radius: 6px;
   color: white;
   font-family: 'Poppins',Sans-Serif;
+  cursor: pointer;
+  transition: background-color 0.3 ease;
+  
 }
 #resume:hover{
   transform: scale(1.1);
-  cursor: pointer;
+  background-color: blue;
 }
 #contact{
   border:1px solid black;
@@ -104,11 +109,14 @@ nav ul button:hover{
   height:40px;
   border-radius: 6px;
   color: black;
+  cursor: pointer;
   font-family: 'Poppins',Sans-Serif;
+  transition: background-color 0.3 ease;
 }
 #contact:hover{
   transform: scale(1.1);
-  cursor: pointer;
+  background-color: black;
+  color: white;
 }
 .smallinfo{
   display: flex;
@@ -122,6 +130,9 @@ nav ul button:hover{
   box-shadow: 0 0 4px grey;
   border-radius: 6px;
   padding: 10px;
+}
+section{
+  margin-top: 40px;
 }
 h3{
   font-family: Times New Roman;
@@ -148,6 +159,108 @@ h3{
 .java:hover, .sql:hover{
   transform: scale(1.05);
 }
+.education h2{
+  margin: 15px;
+  padding: 5px;
+  font-family: 'Poppins', Sans-Serif;
+  text-decoration: underline;
+}
+.form h2{
+   margin: 15px;
+  padding: 5px;
+  font-family: 'Poppins', Sans-Serif;
+  text-decoration: underline;
+}
+.namehere{
+  margin:12px;
+  padding: 10px;
+}
+.namehere label{
+  font-weight: bold;
+  font-family: 'Poppins',Sans-Serif;
+  font-size:15px;
+  text-decoration: underline;
+}
+.namehere input[type="text"]{
+  padding: 8px;
+  width: 200px;
+  border-radius: 6px;
+  border:1px solid grey;
+  margin: 5px;
+  transition:border 0.3 ease;
+}
+.namehere input:focus{
+border: 2px solid black;
+box-shadow: 0 0 20px lightblue;
+outline: none;
+}
+.emailhere{
+  margin:12px;
+  padding: 10px;
+}
+.emailhere label{
+  font-weight: bold;
+  font-family: 'Poppins',Sans-Serif;
+  font-size:15px;
+  text-decoration: underline;
+}
+.emailhere input[type="email"]{
+  padding: 8px;
+  width: 200px;
+  border-radius: 6px;
+  border:1px solid grey;
+  margin: 5px;
+  transition:border 0.3 ease;
+}
+.emailhere input:focus{
+border: 2px solid black;
+box-shadow: 0 0 20px lightblue;
+outline: none;
+}
+.messagehere{
+  margin:12px;
+  padding: 10px;
+}
+.messagehere label{
+  font-weight: bold;
+  font-family: 'Poppins',Sans-Serif;
+  font-size:15px;
+  text-decoration: underline;
+}
+.messagehere input[type="email"]{
+  padding: 8px;
+  width: 200px;
+  border-radius: 6px;
+  border:1px solid grey;
+  margin: 5px;
+  transition:border 0.3 ease;
+}
+.messagehere input:focus{
+border: 1px solid black;
+box-shadow: 0 0 20px lightblue;
+outline: none;
+}
+.btn{
+  margin:12px;
+  padding: 10px;
+}
+.btn input[type="submit"]{
+  color:white;
+  background-color: blue;
+  border-radius: 6px;
+  padding: 10px;
+  width: 100px;
+  border:none;
+  cursor: pointer;
+  transition: transform 0.3 ease,background-color 0.3 ease;
+  font-weight: bold;
+  font-family: 'Poppins',Sans-Serif;
+}
+.btn input:hover{
+  transform: scale(1.1);
+  background-color: lightblue;
+  color: black;
+}
     </style>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   </head>
@@ -157,10 +270,10 @@ h3{
          <nav>
            <h1 class="logo">HI</h1>
            <ul>
-             <li><a href="about.html">About</a></li>
-             <li><a href="goals.html">Goals</a></li>
-             <li><a href="projects.html">Projects</a></li>
-             <li><a href="contact.html">Contact</a></li>
+             <li><a href="#a">About</a></li>
+             <li><a href="#p">Projects</a></li>
+             <li><a href="#e">Education</a></li>
+             <li><a href="#c">Contact</a></li>
              <button type="button">Github</button>
              <button type="button">Linkedin</button>
            </ul>
@@ -168,7 +281,7 @@ h3{
        </div>
      </header>
      <main>
-     <section class="about">
+     <section id="a">
      <h2>Hi-I'm Hassan Idrees!</h2>
      <p>A motivated Software Engineering student with a basic understanding of programming, databases, and web technologies. Eager to learn and apply technical skills in real-world projects.</p>
      <button id="resume" type="button">Resume</button>
@@ -182,7 +295,8 @@ h3{
          <span><p>03313473867</p></span>
        </div>
      </div>
-    <h2 style="text-decoration:underline; margin:15px">Projects</h2>
+     <section id="p">
+    <h2 style="text-decoration:underline; margin:15px; font-family:'Poppins', Sans-Serif">Projects</h2>
      <div class="projects">
        <div class="java">
          <span><h4>Java & SQL Project-Super Mart Management System</h4></span>
@@ -205,6 +319,68 @@ h3{
          </span>
        </div>
      </div>
+     </section>
+     <section id="e">
+       <div class="education">
+         <h2>Education</h2>
+         <div class="university">
+           <span>
+            <p style="opacity:0.7;font-size:13px;margin:15px;line-height:0.4">Present</p>
+           </span>
+           <span>
+            <p style="font-weight:bold;margin:15px;line-height:0.4">BS Software Engineering</p>
+           </span>
+           <span>
+            <p style="margin:15px;line-height:0.4">DHA Suffa University</p>
+           </span>
+         </div>
+         <div class="college">
+           <span>
+            <p style="opacity:0.7;font-size:13px;margin:15px;line-height:0.4">2023</p>
+           </span>
+           <span>
+            <p style="font-weight:bold;margin:15px;line-height:0.4">Pre-Engineering</p>
+           </span>
+           <span>
+            <p style="margin:15px;line-height:0.4">Commecs College</p>
+           </span>
+         </div>
+         <div class="school">
+           <span>
+            <p style="opacity:0.7;font-size:13px;margin:15px;line-height:0.4">2021</p>
+           </span>
+           <span>
+            <p style="font-weight:bold;margin:15px;line-height:0.4">Matriculation(Science)</p>
+           </span>
+           <span>
+            <p style="margin:15px;line-height:0.4">The Crescent Academy</p>
+           </span>
+         </div>
+       </div>
+       </section>
+       <section id="c">
+         <div class="form">
+         <h2>Contact Me</h2>
+         <form action="/submit" method="post">
+         <div class="namehere">
+         <label for="name">Name:</label>
+         <input type="text" id="name" name="name" placeholder="Enter your name here" required>
+         </div>
+         <div class="emailhere">
+         <label for="email">Email:</label>
+         <input type="email" id="email" name="email" placeholder="Enter your email" required>
+         </div>
+         <div class="messagehere">
+         <label for="message">Message:</label>
+         <textarea id="message" name="message" placeholder="Message....." rows="5"></textarea>
+         </div>
+         <div class="btn">
+           <input type="submit" value="Send">
+         </div>
+         </form>
+         </div>
+       </section>
+     </section>
      </main>
   </body>
 </html>
