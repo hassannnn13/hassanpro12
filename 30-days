@@ -142,3 +142,77 @@ Power up modern UI design (arrows, emojis, tooltips, highlights).
 Rule of thumb:
 Pseudo-classes = “when something happens”.
 Pseudo-elements = “add something extra”.
+
+Day 13 → Tailwind Forms Basics
+Tailwind makes forms look neat with utility classes.
+Inputs: border border-gray-300 rounded-lg p-2 w-full.
+Focus state: focus:outline-none focus:ring-2 focus:ring-blue-500.
+Labels: block font-medium text-gray-600 mb-2.
+Buttons: bg-blue-500 text-white rounded-lg hover:bg-blue-700.
+Rule: Always keep spacing consistent with mb-x.
+
+Day 14 → Advanced Forms + Buttons
+Group inputs + labels for better structure.
+w-full → make input take full width of form.
+Add placeholder text → placeholder="Enter email".
+Buttons:
+Primary → bg-blue-500.
+Hover state → hover:bg-blue-600.
+Forms should guide the user with clear labels and spacing.
+
+Day 15 → Spacing & Shadows
+Spacing utilities:
+Margin → m-4, mt-2, mb-6, mx-auto.
+Padding → p-4, px-2, py-3.
+Shadow utilities: shadow-sm, shadow-md, shadow-lg.
+Rounded corners: rounded, rounded-lg, rounded-full.
+Combine shadow + rounded → clean card/button design.
+Golden rule: Too much shadow looks fake, keep it subtle.
+
+Day 16 → Navbar in Tailwind
+Layout: flex justify-between items-center.
+Backgrounds: bg-black text-white.
+Links: hover:bg-gray-300 hover:text-black.
+Dropdown menu:
+Wrap in relative group.
+Inside → absolute hidden group-hover:block.
+Add search bar + button inside navbar for realism.
+
+Day 17 → Cards & Layouts
+Cards: bg-white rounded-lg shadow-md p-4.
+Hover effect: hover:shadow-lg hover:scale-105 transition.
+Grid layout for multiple cards:
+grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3.
+Gap between cards: gap-6.
+Useful for product listings, blogs, portfolios.
+
+Day 18 → Hero Section
+Container: flex justify-between items-center h-screen.
+Left side:
+Heading → text-5xl font-bold.
+Description → text-xl text-gray-600 mt-4.
+Buttons → bg-blue-500 px-4 py-2 rounded-lg.
+Right side:
+Image → w-full max-w-sm rounded-lg shadow.
+Idea: One big message + call-to-action + nice image.
+
+Day 19 → Flex vs Grid (Deep Dive)
+Flexbox = 1D layouts (row OR column).
+Properties: flex-row, flex-col, justify-center, items-center.
+Grid = 2D layouts (rows + columns).
+Properties: grid grid-cols-2 gap-4.
+Flexbox is best for navbar, buttons, forms.
+Grid is best for full layouts, galleries, cards.
+Rule: Use Grid for structure, Flex inside grid items for alignment.
+
+Day 20 → Responsive Design with Tailwind
+Breakpoints in Tailwind:
+sm: → small screens (phones).
+md: → medium (tablets).
+lg: → large (laptops).
+xl: → extra-large (monitors).
+Example:
+grid-cols-1 md:grid-cols-2 lg:grid-cols-3.
+1 column on mobile → 2 columns on tablet → 3 on laptop.
+Mobile-first: Tailwind applies default styles first, then overrides with breakpoints.
+Golden rule: Always test design by resizing browser.
