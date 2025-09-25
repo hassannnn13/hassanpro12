@@ -1,108 +1,236 @@
-alert("Hello Hassan"); for pop up
-prompt ("Hello Hassan"); for pop up wit textarea for input
-Example:
-let name = prompt ("Hello!");
-console.log(name); 
-console.log("Hello!"); for print
+let name = "Hassan";
+let age = 20;
 
-Variables in java are the containers for data
-name= "Hassan Idrees";
-console.log(name); // Result= Hassan Idrees
+console.log("My name is: " + name + " and my age is: " + age);
 
-dinamically typed(no need to tell the data type)
+alert("Welcome to PrimeKick Store.");
 
-first character should be letter,underscore or dollar.
+let shoeName = "Nike";
 
-LET,CONST,VAR
-let name = "Hassan Idrees"; (can be updated)
-console.log(name);
-var name = "Hassan Idrees"; (no need to use as good practice as it is use before 2015) (redeclared)
-console.log(name);
-const name = "Hassan Idrees"; (fixed)
-console.log(name);
+console.log(shoeName);
 
-Data Types:
-String,Integer,Boolean,Undefined,Null,BigInt,Symbol.
+let price1 = 2000;
+let price2 = 3000;
+console.log(price1 + price2);
+console.log(price1 - price2);
+console.log(price1 * price2);
+price1 /= 2;
+console.log(price1 % price2);
+console.log(price1 ** 2);
+console.log(price2 <= 5000);
 
-const student = {
-fullName : "Hassan Idrees",
-age : 25,
-};
-console.log(student["age"]);
-
-const product = {
-title : "Ball Pen",
-ratng : 4,
-price : 200,
-offer : 5,
-};  
-console.log(product);
-
-Operators:
-(+,-,*,/,%,**,++,--)
-
-IF:
-let color;
-mode = "dark";
-if (mode === "dark"){
-color = "black";
+let inStock = true;
+let price = 3000;
+if(inStock && price < 10000){
+    console.log("Good deal.");
+}else if(price > 1000 || inStock){
+   console.log("Not worth it.");
 }
 
-IF/ ELSE:
-let color;
-mode = "dark";
-if (mode === "dark"){
-color = "black";
-} else {
-color = "white";
+for (let i =0; i<=5; i++){
+    console.log("Hassan",i);
+}
+let j=0;
+while(j<=5){
+    console.log("JS",j);
+    j++;
 }
 
-ELSE-IF:
-let age = 19;
-if (age < 18){
-console.log("junior");
-} else if (age > 60) {
-console.log("senior");
-} else {
-console.log("middle");
-}
-
-SWITCH:
-const expr = "Papayas";
-switch (expr) {
-  case "Oranges":
-    console.log("Oranges are $0.59 a pound.");
-    break;
-  case "Mangoes":
-  case "Papayas":
-    console.log("Mangoes and papayas are $2.79 a pound.");
-    // Expected output: "Mangoes and papayas are $2.79 a pound."
-    break;
-  default:
-    console.log(`Sorry, we are out of ${expr}.`);
-}
-
-FOR LOOP:
-for (let i = 1; i <= 5; i++) {
-console.log("Hassan");
-}
-Example:
-sum=0;
-n=5;
-for (let i = 1; i <= n; i++) {
-sum++;
-}
-
-WHILE LOOP:
-let i=1
-while(i<=5){
-console.log("i=",i);
-i++;
-}
-
-DO WHILE: (atleast run one time)
-let i=20
+let x= 0;
 do{
-console.log("Hassan");
-i++;
-}while(i<=10);
+    console.log("Html",x);
+    x++;
+}while(x <=5);
+
+let students = ["Hassan","Hashir","Huzaifa"];
+console.log(students);
+console.log(students[0]);
+console.log(students[2]);
+console.log(students.length);
+students.push("Hasnain");
+console.log(students);
+students.pop();
+console.log(students);
+students.pop();
+console.log(students);
+
+
+let shoes = ["Puma","Adidas","Indure"];
+console.log(shoes);
+
+shoes.push("Nike");
+console.log(shoes);
+shoes.pop();
+console.log(shoes);
+
+shoes.unshift("Converse");
+console.log(shoes);
+shoes.shift();
+console.log(shoes);
+
+for(let i = 0; i < shoes.length; i++){
+    console.log(shoes[i],i);
+}
+
+for(let shoe of shoes){
+    console.log(shoe);
+}
+
+shoes.forEach(function(shoe){
+    console.log(shoe);
+});
+
+let prices = [3000, 5000, 7000];
+for(let price of prices){
+    if(price < 5000){
+        console.log(price + " is a good deal");
+    } else {
+        console.log(price + " is expensive");
+    }
+}
+
+let products = [
+  { name: "Nike Air", price: 5000, inStock: true },
+  { name: "Adidas Boost", price: 4000, inStock: false },
+  { name: "Puma Flex", price: 3500, inStock: true }
+];
+console.log(products);
+console.log(products[1]);
+console.log(products[1].name);
+console.log(products[1].price);
+console.log(products[1].inStock);
+
+products[0].inStock = false;
+console.log(products[0]);
+
+for(let product of products){
+    if(product.inStock && product.price < 5000){
+        console.log(product.name +" is available with discount");
+    }else
+    {
+    console.log(product.name +" is not available");
+    }
+}
+
+
+let n1 = 3;
+let n2 = 5;
+console.log(n1 + n2);
+console.log(n1 - n2);
+console.log(n1 * n2);
+console.log(n1 / n2);
+console.log(n1 % n2);
+console.log(n1 ** n2);
+console.log(n1 * 2);
+console.log(n1 / 2);
+
+let shoePrice = 6000; 
+if(shoePrice < 5000){
+    console.log("Discount available.");
+}else{
+    console.log("Not available");
+}
+
+let inStock = true; 
+let price = 3500;
+if(inStock && price < 5000){
+    console.log("Discount available.");
+}else{
+    console.log("Not available");
+}
+
+for(let i = 1; i <=10; i++){
+    console.log("Shoe "+ i + " in stock");
+}
+
+let n = 5;
+while(n>=0){
+    console.log(n);
+    n--;
+}
+
+let i = 1;
+do{
+    console.log("Welcome to PrimeKick");
+    i++;
+}while(i<=3);
+
+for(let i=1; i<=5; i++){
+    console.log("*".repeat(i));
+}
+
+
+function Customer(name){
+    console.log("Hello "+name+"! Welcome to the Store.");
+}
+Customer("Hassan");
+
+function CalculateDiscount(price){
+    return price * 0.9;
+}
+let discount = CalculateDiscount(5000);
+console.log(discount);
+
+function Students(studentName,isPresent){
+    if(isPresent){
+        console.log(studentName + " is present.");
+    }else{
+        console.log(studentName + " is not present.");
+    }
+}
+Students("Hassan",true);
+Students("Hasnain",false);
+
+
+let name = "Hassan";
+console.log(name);
+console.log(name.length);
+console.log(name.toUpperCase());
+console.log(name.toLowerCase());
+console.log(name.slice(0,6));
+console.log(name.slice(2));
+
+let text = "              i am learning java script";
+console.log(text);
+console.log(text.replace("java","type"));
+console.log(text.trim());
+console.log(text.includes("java"));
+
+
+console.log(Math.PI);
+console.log(Math.round(4.6));
+console.log(Math.floor(4.6));
+console.log(Math.ceil(4.6));
+console.log(Math.random());
+console.log(Math.max(4.6,5.6));
+console.log(Math.min(4.6,6.6));
+
+let shoePrice = 4999.99;
+console.log(Math.round(4999.99));
+console.log(Math.floor(4999.99));
+console.log(Math.ceil(4999.99));
+
+let n = Math.floor(Math.random() * 100) +1;
+console.log(n);
+
+
+let student ={
+    name : "Hassan",
+    age : 20,
+    grade : 'A',
+};
+console.log(student);
+console.log(student.name);
+
+student.grade = 'B';
+console.log(student.grade);
+console.log(student);
+
+student.isPresent = true;
+console.log(student.isPresent)
+
+for(let key in student){
+    console.log(key,":", student[key]);
+}
+
+
