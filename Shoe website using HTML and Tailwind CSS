@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello, World!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="h-screen">
+    <section>
+   <nav class="flex justify-between items-center bg-black text-white p-3 m-auto">
+     <h1 class="text-3xl font-bold underline text-orange-500">PrimeKick</h1>
+     <div class="flex items-center gap-3">
+       <a href="#" class="bg-black rounded-lg hover:bg-gray-200 hover:scale-105 p-1 hover:text-black transition duration-100">Home</a>
+       <a href="#" class="bg-black rounded-lg hover:bg-gray-200 hover:scale-105 p-1 hover:text-black transition duration-100">About</a>
+       <a href="#" class="bg-black rounded-lg hover:bg-gray-200 hover:scale-105 p-1 hover:text-black transition duration-100">Contact</a>
+      <div class="relative group">
+      <a href="#" class="bg-black rounded-lg hover:bg-gray-200 p-1 hover:text-black transition duration-100">Profile</a>
+      <div class="absolute hidden group-hover:block bg-white shadow-md rounded-lg w-40">
+        <a href="#" class="block text-black p-2 m-2 hover:bg-gray-200">Settings</a>
+        <a href="#" class="block text-black p-2 m-2 hover:bg-gray-200">LogOut</a>
+      </div>
+       </div>
+       <button class="bg-blue-500 rounded-lg hover:bg-blue-600 hover:scale-105 p-1 px-1 transition duration-200">Login</button>
+       <button class="bg-black rounded-lg hover:bg-blue-600 hover:scale-105 p-1 px-1 transition duration-200 border">SignUp</button>
+       <input type="text" class="rounded-lg p-1 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 text-black" name="search" placeholder="Search here">
+     </div>
+   </nav>
+   </section>
+   <section>
+     <div class="flex justify-between items-center gap-2 bg-gradient-to-r from-blue-300 to-purple-500 p-10">
+       <div>
+         <h1 class="font-bold text-5xl text-orange-500 ">Welcome To PrimeKick</h1>
+         <p class="text-2xl font-bold text-gray-500">Shop the best collection of sneakers at amazing prices.</p>
+         <button class="bg-blue-400 hover:bg-blue-500 rounded-lg shadow-md p-2 mt-2">Shop Now</button>
+         <button class="bg-white hover:bg-gray-300 rounded-lg shadow-md p-2 mt-2 mx-2">Learn More</button>
+       </div>
+       <div class="w-100 h-100 bg-green-400 rounded-lg shadow-md p-4">
+         <h2 class="text-center text-3xl font-bold text-white">Independence Day Sale!</h2>
+         <p class="text-center text-5xl font-bold mt-3 mb-3 text-white">50% OFF</p>
+         <p class="text-center text-xl text-white">Get you hands on your favourite kicks.</p>
+       </div>
+     </div>
+   </section>
+   <section>
+     <h2 class="text-3xl font-bold text-gray-600 text-center mt-2 mb-2">Why Choose Us?</h2>
+     <p class=" text-gray-600 text-center mt-1 mb-2">"Delivering comfort, quality, and trust with every step."</p>
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-6 gap-4 bg-gray-300">
+       <div class="bg-white rounded-lg shadow-md p-6 text-center hover:scale-105 transition ease-in-out">
+         <h3 class="font-bold text-xl mb-2 text-gray-800">Wide Collection</h3>
+         <p class="text-gray-600">From sneakers to formal shoes, we offer styles for every occasion.</p>
+       </div>
+       <div class="bg-white rounded-lg shadow-md p-6 text-center hover:scale-105 transition ease-in-out">
+         <h3 class="font-bold text-xl mb-2 text-gray-800">Premium Quality</h3>
+         <p class="text-gray-600">Shoes made with durable, high-quality materials that last longer.</p>
+       </div>
+        <div class="bg-white rounded-lg shadow-md p-6 text-center hover:scale-105 transition ease-in-out">
+          <h3 class="font-bold text-xl mb-2 text-gray-800">Fast Delivery</h3>
+          <p class="text-gray-600">Get your orders in 24–48 hours.</p>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-6 text-center hover:scale-105 transition ease-in-out">
+          <h3 class="font-bold text-xl mb-2 text-gray-800">Secure Payments</h3>
+          <p class="text-gray-600">Your transactions are safe and encrypted.</p>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-6 text-center hover:scale-105 transition ease-in-out">
+          <h3 class="font-bold text-xl mb-2 text-gray-800">Great Deals</h3>
+          <p class="text-gray-600">Enjoy discounts and special offers.</p>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-6 text-center hover:scale-105 transition ease-in-out">
+          <h3 class="font-bold text-xl mb-2 text-gray-800">24/7 Support</h3>
+          <p class="text-gray-600">We’re here to help anytime.</p>
+        </div>
+     </div>
+   </section>
+   <section>
+     <h2 class="text-3xl font-bold text-gray-600 text-center mt-2 mb-2">Products</h2>
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 w-full">
+       <div class="bg-white rounded-lg max-w-sm m-4 p-3 shadow-md hover:shadow-lg hover:scale-105 transition duration-200 relative">
+         <div class="absolute top-2 right-2 text-sm bg-red-600 text-white p-1 rounded-lg border-2 border-dotted">Sale</div>
+         <div class="w-full h-40 bg-gray-300 rounded-lg mb-2 flex items-center justify-center"></div>
+         <h2 class="font-bold text-xl">PrimeKick Velocity</h2>
+         <p class="text-gray-400 font-medium">Men's Fashion</p>
+         <p class="text-lg font-bold text-green-600">5000.00 Rs</p>
+         <p class="text-lg text-xs text-black ">Rating: 4.5/5</p>
+         <button class="bg-blue-500 p-2 rounded-lg shadow-md hover:bg-blue-700 mt-6 text-white">Buy Now</button>
+       </div>
+       <div class="bg-white rounded-lg max-w-sm m-4 p-3 shadow-md hover:shadow-lg hover:scale-105 transition duration-200 relative">
+         <div class="absolute top-2 right-2 text-sm bg-red-600 text-white p-1 rounded-lg border-dotted border-2">Sale</div>
+         <div class="w-full h-40 bg-gray-300 rounded-lg mb-2 flex items-center justify-center"></div>
+         <h2 class="font-bold text-xl">PrimeKick Aero</h2>
+         <p class="text-gray-400 font-medium">Men's Fashion</p>
+         <p class="text-lg font-bold text-green-600">3999.99 Rs</p>
+         <p class="text-lg text-xs text-black ">Rating: 4.0/5</p>
+         <button class="bg-blue-500 p-2 rounded-lg shadow-md hover:bg-blue-700 mt-6 text-white">Buy Now</button>
+       </div>
+       <div class="bg-white rounded-lg max-w-sm m-4 p-3 shadow-md hover:shadow-lg hover:scale-105 transition duration-200">
+         <div class="w-full h-40 bg-gray-300 rounded-lg mb-2 flex items-center justify-center"></div>
+         <h2 class="font-bold text-xl">PrimeKick Ignite</h2>
+         <p class="text-gray-400 font-medium">Men's Fashion</p>
+         <p class="text-lg font-bold text-green-600">4500.00 Rs</p>
+         <p class="text-lg text-xs text-black ">Rating: 3.9/5</p>
+         <button class="bg-blue-500 p-2 rounded-lg shadow-md hover:bg-blue-700 mt-6 text-white">Buy Now</button>
+       </div>
+       <div class="bg-white rounded-lg max-w-sm m-4 p-3 shadow-md hover:shadow-lg hover:scale-105 transition duration-200">
+         <div class="w-full h-40 bg-gray-300 rounded-lg mb-2 flex items-center justify-center"></div>
+         <h2 class="font-bold text-xl">PrimeKick Origin</h2>
+         <p class="text-gray-400 font-medium">Men's Fashion</p>
+         <p class="text-lg font-bold text-green-600">2999.99 Rs</p>
+         <p class="text-lg text-xs text-black ">Rating: 4.5/5</p>
+         <button class="bg-blue-500 p-2 rounded-lg shadow-md hover:bg-blue-700 mt-6 text-white">Buy Now</button>
+       </div>
+       <div class="bg-white rounded-lg max-w-sm m-4 p-3 shadow-md hover:shadow-lg hover:scale-105 transition duration-200">
+         <div class="w-full h-40 bg-gray-300 rounded-lg mb-2 flex items-center justify-center"></div>
+         <h2 class="font-bold text-xl">PrimeKick Horizon</h2>
+         <p class="text-gray-400 font-medium">Men's Fashion</p>
+         <p class="text-lg font-bold text-green-600">5000.00 Rs</p>
+         <p class="text-lg text-xs text-black ">Rating: 4.3/5</p>
+         <button class="bg-blue-500 p-2 rounded-lg shadow-md hover:bg-blue-700 mt-6 text-white">Buy Now</button>
+       </div>
+       <div class="bg-white rounded-lg max-w-sm m-4 p-3 shadow-md hover:shadow-lg hover:scale-105 transition duration-200">
+         <div class="w-full h-40 bg-gray-300 rounded-lg mb-2 flex items-center justify-center"></div>
+         <h2 class="font-bold text-xl">PrimeKick Pulse</h2>
+         <p class="text-gray-400 font-medium">Men's Fashion</p>
+         <p class="text-lg font-bold text-green-600">4999.99 Rs</p>
+         <p class="text-lg text-xs text-black ">Rating: 4.0/5</p>
+         <button class="bg-blue-500 p-2 rounded-lg shadow-md hover:bg-blue-700 mt-6 text-white">Buy Now</button>
+       </div>
+     </div>
+   </section>
+   <section>
+     <div class="w-full p-2 rounded-lg m-4">
+       <h2 class="text-3xl font-bold text-gray-600 text-center mt-2 mb-2">Subscribe the website</h2>
+       <p class="text-gray-400 font-medium text-center">Fill your email address in the box so that you can update with all the discounts and updates.</p>
+     </div>
+     <div class="mt-3 text-center ">
+       <span><input type="email" name="email" placeholder="Enter your email address" class="mb-6 p-2 max-w-md rounded-lg border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-300"></span>
+       <button type="submit" class="bg-red-600 text-white p-2 m-1 rounded-lg shadow-md hover:scale-105 hover:bg-red-800 transition ease-in-out mb-6">Subscribe</button>
+     </div>
+   </section>
+   <section>
+     <footer class="bg-black p-6 m-3 text-white w-full">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full p-8 ">
+        <div>
+        <h1 class="text-3xl font-bold underline text-orange-500">PrimeKick</h1>
+        </div>
+        <div>
+          <ul>
+          <li><a href="#" class="text-white hover:text-orange-500">Home</a></li>
+          <li><a href="#" class="text-white hover:text-orange-500">About</a></li>
+          <li><a href="#" class="text-white hover:text-orange-500">Products</a></li>
+          <li><a href="#" class="text-white hover:text-orange-500">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-white font-semibold underline">Contact Us</h3>
+          <p class="text-white hover:text-orange-500">Email:primekick@support.com</p>
+          <p class="text-white hover:text-orange-500">Phone:0331-3456781</p>
+        </div>
+        <div>
+          <p class="text-center text-gray-400"> © 2025 PrimeKick. All Rights Reserved.</p>
+        </div>
+      </div>
+     </footer>
+   </section>
+  </body>
+</html>
+</body>
+</html>
