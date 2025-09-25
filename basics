@@ -1,12 +1,9 @@
 let name = "Hassan";
 let age = 20;
-
 console.log("My name is: " + name + " and my age is: " + age);
-
 alert("Welcome to PrimeKick Store.");
 
 let shoeName = "Nike";
-
 console.log(shoeName);
 
 let price1 = 2000;
@@ -30,6 +27,7 @@ if(inStock && price < 10000){
 for (let i =0; i<=5; i++){
     console.log("Hassan",i);
 }
+
 let j=0;
 while(j<=5){
     console.log("JS",j);
@@ -40,7 +38,8 @@ let x= 0;
 do{
     console.log("Html",x);
     x++;
-}while(x <=5);
+}
+while(x <=5);
 
 let students = ["Hassan","Hashir","Huzaifa"];
 console.log(students);
@@ -54,15 +53,12 @@ console.log(students);
 students.pop();
 console.log(students);
 
-
 let shoes = ["Puma","Adidas","Indure"];
 console.log(shoes);
-
 shoes.push("Nike");
 console.log(shoes);
 shoes.pop();
 console.log(shoes);
-
 shoes.unshift("Converse");
 console.log(shoes);
 shoes.shift();
@@ -112,7 +108,6 @@ for(let product of products){
     }
 }
 
-
 let n1 = 3;
 let n2 = 5;
 console.log(n1 + n2);
@@ -158,7 +153,6 @@ do{
 for(let i=1; i<=5; i++){
     console.log("*".repeat(i));
 }
-
 
 function Customer(name){
     console.log("Hello "+name+"! Welcome to the Store.");
@@ -231,6 +225,18 @@ console.log(student.isPresent)
 
 for(let key in student){
     console.log(key,":", student[key]);
+
+let student ={name : "Hassan",age : 20,grade : 'A'};
+let jsonData = JSON.stringify(student);
+console.log(jsonData);
+
+let jsonData1 = '{"name":"Hassan","age":20,"grade":"A"}';
+let obj = JSON.parse(jsonData1);
+console.log(obj);
+
+let name = "Hassan";
+let age = 20;
+console.log(`My name is ${name} and I am ${age} years old.`);
 }
 
 
