@@ -239,4 +239,23 @@ let age = 20;
 console.log(`My name is ${name} and I am ${age} years old.`);
 }
 
+let grade = 'B';
+
+switch (grade) {
+  case 'A':
+    console.log("Excellent");
+    break;
+
+  case 'B':
+    console.log("Good");
+    break;
+
+  case 'C':
+    console.log("Bad");
+    break;
+
+  default:
+    console.log("Very Bad");
+}
+
 
