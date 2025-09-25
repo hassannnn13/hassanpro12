@@ -270,4 +270,15 @@ catch (error) {
   console.log("Something went wrong:", error.message);
 }
 
+let prices = [100,200,300];
+let doubled = prices.map(p => p * 2);
+console.log(doubled);
+
+let expensive = [100,200,300];
+let cheap = expensive.filter(e => e < 200);
+console.log(cheap);
+
+let numbers = [10, 20, 30, 40];
+let total = numbers.reduce((sum, num) => sum + num, 0);
+console.log(total);
 
