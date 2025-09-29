@@ -118,7 +118,7 @@ console.log(greet("Hassan",20);
 
 Union & Intersection Types:
 Problems:
-let phone : string |number;
+let phone : string | number;
 phone = "IPhone";
 phone = 12345;
 
@@ -161,3 +161,32 @@ let hassan: StudentGamer = {
   age: 20,
   gameName: "FIFA"
 };
+
+
+Interfaces & Classes:
+interface Student {
+name : string;
+age : number;
+rollNo : number;
+isEnrolled : boolean;
+}
+let student1 : Student {
+name : "Hassan",
+age : 20,
+rollNo : 101,
+isEnrolled : true,
+};
+
+class StudentClass {
+name : string;
+age : number;
+constructor(name : string, age : number){
+this.name = name;
+this.age = age;
+}
+introduceStudent(): string {
+return `Hello I am ${this.name} and my age is ${this.age}`;
+}
+}
+let hassan = new StudentClass("Hassan", 20);
+console.log(hassan.introduceStudent());
