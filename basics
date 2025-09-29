@@ -84,3 +84,80 @@ isActive : boolean,
 let course1 : Course = { courseName : "Computer Science", duration : 3, isActive : true};
 let course2 : Course = { courseName : "DSA", duration : 1, isActive : false};
 
+
+Functions & Return Types:
+function add(a : number, b : number) : number {
+return a + b;
+}
+
+function greet(name :  string , age? : number) : string{
+if ( age !== undefined){
+return `Hello my name is ${name} and my age is ${age}`;
+}
+return `Hello, ${name}`;
+}
+console.log(greet("Hassan");
+console.log(greet("Hassan",20);
+
+Problems:
+function square(num : number) : number{
+return square num * num;
+int result = square(8);
+console.log(result);
+}
+
+function introduce(name : string, age? : number) : string {
+if (age !== undefined){
+return `Hello my name is ${name} and my age is ${age}`;
+}
+return `Hello, ${name}`;
+}
+console.log(greet("Hassan");
+console.log(greet("Hassan",20);
+
+
+Union & Intersection Types:
+Problems:
+let phone : string |number;
+phone = "IPhone";
+phone = 12345;
+
+let trafficlight : "red" | "yellow" | "green";
+trafficlight= "red";
+trafficlight= "blue"; //error
+
+type Student = { name : string , age : number };
+type Gamer = { gameName : string };
+type StudentGamer = Student & Gamer;
+let hassan: StudentGamer = {
+  name: "Hassan",
+  age: 20,
+  gameName: "FIFA"
+};
+
+Problem : (all mixed)
+type Student = {
+name : string;
+age : number;
+rollNo : number;
+isEnrolled :  boolean;
+};
+let student1 : Student = { name : "Hassan", age : 20, rollNo : 101, isEnrolled : true };
+let student2 : Student = { name : "Ukasha", age : 22, rollNo : 102, isEnrolled : false };
+
+let students : Student[]  = [student1, student2];
+
+function introduceStudent(student : Student) : string {
+return `Hi, I am ${student.name}, Roll No:${student.rollNo}`;
+}
+
+let favSubject : [string , number] = [ "Programming" , 90 ];
+
+type Student = { name : string , age : number };
+type Gamer = { gameName : string };
+type StudentGamer = Student & Gamer;
+let hassan: StudentGamer = {
+  name: "Hassan",
+  age: 20,
+  gameName: "FIFA"
+};
