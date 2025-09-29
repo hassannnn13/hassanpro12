@@ -69,3 +69,18 @@ type Student = {
 let student1 : Student =  { name: "Hassan", rollNo: 101, isEnrolled: true };
 let student2: Student = { name: "Ali", rollNo: 102, isEnrolled: false };
 
+Problems:
+let book : { title : string, author : string, pages : number} = {
+title : "Horse Power",
+author : "Hassan",
+pages : 200,
+};
+
+type Course = {
+courseName : string,
+duration : number,
+isActive : boolean,
+};
+let course1 : Course = { courseName : "Computer Science", duration : 3, isActive : true};
+let course2 : Course = { courseName : "DSA", duration : 1, isActive : false};
+
