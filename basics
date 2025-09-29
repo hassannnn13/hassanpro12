@@ -1,0 +1,71 @@
+Basics:
+// Numbers
+let age: number = 20;
+age = 21;
+
+// Strings
+let name: string = "Fatima";
+const greeting: string = `Hello, ${name}`;
+
+// Boolean
+let isStudent: boolean = true;
+
+// Type inference (TS can guess the type)
+let count = 5; 
+
+// Any (turns off checking — avoid when learning)
+let whatever: any = "hello";
+whatever = 5;
+
+// Unknown (safer than any)
+let something: unknown = 10;
+
+// Void — for functions that DON'T return a value
+function sayHi(): void {
+  console.log("Hi!");
+}
+
+// Never — for functions that never finish normally (rare)
+function explode(): never {
+  throw new Error("boom");
+}
+
+Problems:
+let name: string = "Hassan";
+let myAge : number = 20;
+
+function Add(a:number, b:number) : number{
+return a+b; 
+}
+
+
+Arrays & Tuples:
+let numbers : number [] = [1,2,3,4,5];
+let names : string [] = ["Hassan","Hasnain","Abdullah"];
+let mixed : (string | number) [] = ["Hassan",1,"Hasnain",2,"Abdullah",3];
+let n : Array<number> = [1,2,3,4,5];
+
+let person : [string, number] = ["Hassan" , 20];
+let n = [number, number, number] = [255,65,75]
+
+Problems:
+let n: number[] = [1, 2, 3];
+let movies: string[] = ["Tamasha", "YJHD", "F1"];
+let student: [string, number] = ["Hassan", 20];
+
+
+Objects & Type Aliases:
+let user : { name : string , age : number, isPresent : boolean} = {
+name: "Hassan",
+age: 20,
+isPresent: true,
+};
+
+type Student = {
+  name: string;
+  rollNo: number;
+  isEnrolled: boolean;
+};
+let student1 : Student =  { name: "Hassan", rollNo: 101, isEnrolled: true };
+let student2: Student = { name: "Ali", rollNo: 102, isEnrolled: false };
+
