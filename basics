@@ -189,4 +189,10 @@ return `Hello I am ${this.name} and my age is ${this.age}`;
 }
 }
 let hassan = new StudentClass("Hassan", 20);
-console.log(hassan.introduceStudent());
+let hasnain = new StudentClass("Hasnain", 15);
+let ukasha = new StudentClass("Ukasha", 25);
+
+let students: StudentClass[] = [hassan, hasnain, ukasha];
+for(let student of students){
+console.log(student.introduceStudent());
+}
