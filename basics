@@ -198,7 +198,7 @@ console.log(student.introduceStudent());
 }
 
 Problem:
-class Car{
+1.class Car{
 public brand : string;
 private year : number;
 
@@ -223,3 +223,36 @@ c.setYear(2004);
 console.log(c.getInfo());
 c.setYear(1990);
 
+
+2.class BankAccount{
+private balance : number;
+constructor(balance : number){
+this.balance = balance;
+}
+deposit(amount : number) : void {
+    if (amount > 0){
+        this.balance = this.balance + amount;
+    }
+    else{
+        console.log("Unable to deposit.")
+    }
+}
+withdraw(amount : number) : void{
+    if (amount <= this.balance){
+        this.balance = this.balance - amount;
+    }
+    else{
+        console.log("Unable to withdraw.");
+    }
+  }
+  getBalance() : string{
+      return `Balance : ${this.balance}`;
+  }
+}
+let b = new BankAccount(1000);
+console.log(b.getBalance());
+b.deposit(500);
+console.log(b.getBalance());
+b.withdraw(1000);
+console.log(b.getBalance());
+b.withdraw(2000);
