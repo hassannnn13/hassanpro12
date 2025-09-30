@@ -196,3 +196,30 @@ let students: StudentClass[] = [hassan, hasnain, ukasha];
 for(let student of students){
 console.log(student.introduceStudent());
 }
+
+Problem:
+class Car{
+public brand : string;
+private year : number;
+
+constructor(brand : string, year : number){
+this.brand = brand;
+this.year = year;
+}
+getInfo() : string {
+return `Brand is ${this.brand} and year is ${this.year}`;
+}
+setYear(newYear : number) : void{
+    if (newYear > 1995){
+        this.year = newYear;
+    }else{
+        console.log("Not valid!");
+    }
+  }
+}
+let c = new Car("BMW", 2010);
+console.log(c.getInfo());
+c.setYear(2004);
+console.log(c.getInfo());
+c.setYear(1990);
+
