@@ -223,7 +223,6 @@ c.setYear(2004);
 console.log(c.getInfo());
 c.setYear(1990);
 
-
 2.class BankAccount{
 private balance : number;
 constructor(balance : number){
@@ -256,3 +255,30 @@ console.log(b.getBalance());
 b.withdraw(1000);
 console.log(b.getBalance());
 b.withdraw(2000);
+
+
+Inheritance in TypeScript:
+class Vehicle{
+public brand : string;
+private year : number;
+constructor(brand : string, year : number){
+this.brand = brand;
+this.year = year;
+}
+getInfo() : string {
+ return `Brand is ${this.brand} and year is ${this.year}`;
+ }
+}
+class Car extends Vehicle{
+    public color : string;
+    
+constructor(brand:string, year :number, color:string){
+    super(brand,year);
+    this.color = color;
+}
+getInfo() : string {
+ return `${super.getInfo()},${this.color}`;
+ }
+}
+let c1 = new Car("Toyota",2020,"red");
+console.log(c1.getInfo());
