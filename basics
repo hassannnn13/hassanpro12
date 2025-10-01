@@ -282,3 +282,35 @@ getInfo() : string {
 }
 let c1 = new Car("Toyota",2020,"red");
 console.log(c1.getInfo());
+
+
+Generic In TypeScript:
+class Box<T> {
+  value: T;
+  constructor(value: T) {
+    this.value = value;
+  }
+  getValue(): T {
+    return this.value;
+  }
+}
+let b1 = new Box("Hassan");  
+b1.getValue();               
+let b2 = new Box(10);       
+b2.getValue();  
+
+function makePair<T,U>(first : T, second :U) : [T,U] {
+    return [first,second];}
+}
+let b1 = makePair("Hassan",20);
+let b2 = makePair(101,"Hassan");
+
+function createEmptyArray<T>() : T[] {
+    return [];}
+let b1 = createEmptyArray<string>();
+let b2 = createEmptyArray<number>();
+
+function wrapInBox<T>(value : T) : T[] {
+    return [value];}
+let b1 = wrapInBox("Hassan");
+let b2 = wrapInBox(101);
