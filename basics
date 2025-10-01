@@ -314,3 +314,40 @@ function wrapInBox<T>(value : T) : T[] {
     return [value];}
 let b1 = wrapInBox("Hassan");
 let b2 = wrapInBox(101);
+
+
+Enum In TypeScript:
+enum Direction{
+    Up,
+    Down,
+    Left = 4,
+    Right
+}
+let move : Direction = Direction.Up;
+console.log(move);
+console.log(Direction.Left);
+
+enum TrafficLight{
+    Red = "Red",
+    Yellow = "Yellow",
+    Green = "Green"
+}
+let signal : TrafficLight = TrafficLight.Red;
+console.log(signal);
+console.log(TrafficLight.Yellow);
+console.log(TrafficLight.Green);
+
+enum UserRole{
+    Admin, 
+    Editor,
+    Viewer,
+}
+let CurrentUser : UserRole = UserRole.Admin;
+function checkAccess(role : UserRole) : void{
+     if (role === UserRole.Admin) {
+        console.log("Access Granted");
+    } else {
+        console.log("Access Denied");
+    }
+}
+checkAccess(CurrentUser);
