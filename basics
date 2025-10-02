@@ -365,3 +365,30 @@ let person3: Person = { name: "Sara", age: 25 };
 console.log(`${person1.name} is ${person1.age ?? "age unknown"} years old and lives in ${person1.city ?? "Unknown city"}.`);
 console.log(`${person2.name} is ${person2.age ?? "age unknown"} years old and lives in ${person2.city ?? "Unknown city"}.`);
 console.log(`${person3.name} is ${person3.age ?? "age unknown"} years old and lives in ${person3.city ?? "Unknown city"}.`);
+
+
+Types In TS:
+
+Mapped:
+type Person = {
+    name : string;
+    age : number;
+    city : string;
+};
+type PartialPerson = {
+    [key in keyof Person]? : Person[key];
+};
+let p1 : PartialPerson = { name : "Hassan"};
+console.log(p1);
+
+Conditional:
+type IsString<T> = T extends string ? "Yes" : "No";
+type A = IsString<string>;
+type B = IsString<string>;
+
+Utility:
+type Person = { name : string; age : number; city : string };
+type PartialPerson = Partial<Person>;
+type NameOnly = Pick<Person, "name">;
+type PersonRecord = Record<"p1" | "p2",Person>;
+
