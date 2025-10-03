@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Directives</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <style>
+    .highlight {
+      color: green;
+      font-weight: bold;
+    }
+    .warning {
+      color: red;
+    }
+  </style>
+</head>
+<body ng-app="myApp" ng-controller="MainCtrl">
+
+  <!-- 1. Expression vs ng-bind -->
+  <p>Hello {{ name }}</p>
+  <p ng-bind="name"></p>
+
+  <!-- 2. ng-show / ng-hide -->
+  <button ng-click="toggleList()">Toggle List</button>
+  <ul ng-show="showList">
+    <li ng-repeat="student in students">
+      {{ student }}
+      </li>
+  </ul>
+  <p ng-hide="showList">List is hidden</p>
+
+  <!-- 3. ng-disabled -->
+  <input type="text" ng-model="newStudent" placeholder="Add student"/>
+  <button ng-click="addStudent()" ng-disabled="!newStudent">Add Student</button>
+
+  <!-- 4. ng-class -->
+  <p ng-class="{'highlight': students.length > 3, 'warning': students.length == 0}">
+    Total Students: {{ students.length }}
+  </p>
+
+  <script>
+    var app = angular.module("myApp", []);
+    app.controller("MainCtrl", function($scope) {
+      $scope.name = "Hassan";
+      $scope.students = ["Hashir", "Huzaifa", "Abdullah"];
+      $scope.showList = true;
+
+      $scope.toggleList = function() {
+        $scope.showList = !$scope.showList;
+      };
+
+      $scope.addStudent = function() {
+        if ($scope.newStudent) {
+          $scope.students.push($scope.newStudent);
+          $scope.newStudent = "";
+        }
+      };
+    });
+  </script>
+</body>
+</html>
