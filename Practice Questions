@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello, World!</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  </head>
+  <body>
+    <div ng-app>
+    <h1>Hello {{ name }}</h1>
+    <p>Name: <input type="text" ng-model="name" placeholder="Enter your name" /></p>
+    <p ng-bind="name"></p>
+    </div>
+  </body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello, World!</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  </head>
+  <body>
+    <div ng-app="myApp" ng-controller="MainCtrl">
+    <h1>Welcome, {{ username }}</h1>
+    <p>Username: <input type="text" ng-model="username" placeholder="Enter your username" /></p>
+    <p ng-bind="username"></p>
+    <button ng-click ="sayHello()" >Click Me</button>
+    </div>
+    <script>
+      var app = angular.module("myApp",[]);
+      app.controller("MainCtrl",function($scope){
+        $scope.sayHello = function(){
+          alert("Hello " +$scope.username+ "!");
+        };
+      });
+    </script>
+  </body>
+</html>
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello, World!</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  </head>
+  <body>
+    <div ng-app>
+    <h1>Students List</h1>
+    
+    <div ng-init="students=['Hassan','Ukasha','Hasnain']"></div>
+    
+    <ul>
+      <li ng-repeat="student in students">
+        {{ student }}
+      </li>
+    </ul>
+    </div>
+  </body>
+</html>
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello, World!</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  </head>
+  <body>
+    <div ng-app="myApp" ng-controller="MainCtrl">
+    <h1>Students List</h1>
+    <input type="text" ng-model="newStudent" placeholder="Enter the name......."/>
+    <button ng-click="addStudent()">Add student</button>
+
+    <ol>
+      <li ng-repeat="student in students">
+        {{ student }}
+      </li>
+    </ol>
+    </div>
+    <script>
+      var app = angular.module("myApp",[]);
+      app.controller("MainCtrl",function($scope){
+        $scope.students = ['Hassan','Ukasha','Hasnain'];
+        $scope.addStudent = function(){
+          if($scope.newStudent){
+            $scope.students.push($scope.newStudent);
+            $scope.newStudent="";
+          }
+        };
+      });
+    </script>
+  </body>
+</html>
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello, World!</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  </head>
+  <body>
+    <div ng-app="myApp" ng-controller="MainCtrl">
+    <h1>Students List</h1>
+    <input type="text" ng-model="newStudent" placeholder="Enter the name......."/>
+    <button ng-click="addStudent()">Add student</button>
+
+    <ol>
+      <li ng-repeat="student in students">
+        {{ student }}
+        <button ng-click="removeStudent($index)">Delete</button>
+      </li>
+    </ol>
+    </div>
+    <script>
+      var app = angular.module("myApp",[]);
+      app.controller("MainCtrl",function($scope){
+        $scope.students = ['Hassan','Ukasha','Hasnain'];
+        $scope.addStudent = function(){
+          if($scope.newStudent){
+            $scope.students.push($scope.newStudent);
+            $scope.newStudent="";
+          }
+        };
+        $scope.removeStudent = function(index){
+          $scope.students.splice(index,1);
+        }
+      });
+    </script>
+  </body>
+</html>
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello, World!</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  </head>
+  <body>
+   <div ng-app="myApp" ng-controller="MainCtrl">
+     <h1>Students List</h1>
+     <input type="text" ng-model="newStudent" placeholder="Enter your name............"/>
+     <button ng-click="addStudent()">Add Student</button>
+     
+     <ol>
+       <li ng-repeat="student in students track by $index">
+         
+         <span ng-if="!student.editing">{{student.name}}</span>
+         
+         <input ng-if="student.editing" type="text" ng-model="student.name"/>
+         
+         <button ng-click="editStudent(student)">{{ student.editing ? "Save" : "Edit"}}</button>
+         
+         <button ng-click="removeStudent($index)">Remove</button>
+       </li>
+     </ol>
+   </div>
+    <script>
+      var app = angular.module("myApp",[]);
+      app.controller("MainCtrl",function($scope){
+        $scope.students = [
+          {name : 'Hassan', editing : false},
+          {name : 'Hashir', editing : false},
+          {name : 'Huzaifa', editing : false},
+          {name : 'Hasnain', editing : false},
+          {name : 'Abdullah', editing : false}
+          ];
+
+       $scope.addStudent = function() {
+         if($scope.newStudent){
+           $scope.students.push({name : $scope.newStudent, editing : false});
+           $scope.newStudent="";
+         }
+       };
+
+       $scope.removeStudent = function(index){
+         $scope.students.splice(index,1);
+       };
+
+       $scope.editStudent = function (student){
+         student.editing = !student.editing;
+       };
+
+      });
+    </script>
+  </body>
+</html>
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Day 2 - Directives</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <style>
+    .highlight {
+      color: green;
+      font-weight: bold;
+    }
+    .warning {
+      color: red;
+    }
+    .danger{
+      color: blue;
+    }
+  </style>
+</head>
+<body ng-app="myApp" ng-controller="MainCtrl">
+
+  <h1>AngularJS Directives</h1>
+
+  <p>Hello {{ name | uppercase}}</p>
+  <p ng-bind="name"></p>
+  <p>{{fee | currency}}</p>
+
+  <button ng-click="toggleList()">Toggle List</button>
+  <ul ng-show="showList">
+    <li ng-repeat="student in students">
+      {{ student | lowercase}}
+      </li>
+      <button ng-click="removeStudent()" ng-disabled="students.length === 0">Clear All</button>
+  </ul>
+  <p ng-hide="showList">List is hidden</p>
+ 
+  <input type="text" ng-model="newStudent" placeholder="Add student"/>
+  <button ng-click="addStudent()" ng-disabled="!newStudent || students.includes(newStudent)">Add Student</button>
+  <div>
+  <input type="text" ng-model="searchText" placeholder="Search Here......."/>
+  <ul>
+    <li ng-repeat="student in students | filter:searchText">
+      {{student}}
+    </li>
+  </ul>
+  </div>
+  <div>
+    <button ng-click="reverse = !reverse">Toggle Order</button>
+  <ul>
+    <li ng-repeat="student in students | orderBy :' ': reverse ">
+      {{student}}
+    </li>
+  </ul>
+  </div>
+
+  <p ng-class="{'highlight': students.length > 3, 'warning': students.length == 0, 'danger' : students.length > 5}">
+    Total Students: {{ students.length }}
+  </p>
+  <p ng-if="students.length == 0 " >No student yet.</p>
+  <p ng-if="students.length > 5 " >Too many students.</p>
+
+  <script>
+    var app = angular.module("myApp", []);
+    app.controller("MainCtrl", function($scope) {
+      $scope.name = "Hassan";
+      $scope.fee = 2000;
+      $scope.students = ["Hashir", "Huzaifa", "Abdullah"];
+      $scope.showList = true;
+
+      $scope.toggleList = function() {
+        $scope.showList = !$scope.showList;
+      };
+
+      $scope.addStudent = function() {
+        if ($scope.newStudent) {
+          $scope.students.push($scope.newStudent);
+          $scope.newStudent = "";
+        }
+      };
+      $scope.removeStudent = function(){
+      $scope.students = [];
+      }
+    });
+  </script>
+</body>
+</html>
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Day 2 - Directives</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <style>
+    
+  </style>
+</head>
+<body ng-app="myApp" ng-controller="MainCtrl">
+<form name="loginForm">
+  <div>
+  <label>Username:</label>
+  <input type="text" ng-model="username" name="username" ng-required="true"/>
+  <span ng-show="loginForm.username.$error.required"></span>
+  </div>
+  <div>
+    <label>Password:</label>
+  <input type="password" ng-model="password" name="password" ng-minlength="4" ng-required="true"/>
+  <span ng-show="loginForm.password.$error.required"></span>
+  <span ng-show="loginForm.password.$error.minlength">Password must be at least 4 characters!</span>
+  </div>
+  <button ng-disabled="loginForm.$invalid">Login</button>
+  
+</form>
+
+  <script>
+  var app = angular.module("myApp",[]);
+  app.controller("MainCtrl", function($scope){
+  $scope.username = "";
+  $scope.password = "";
+  });
+  </script>
+</body>
+</html>
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Day 5 - Sorting & Filtering</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="MainCtrl">
+
+  <h2>Student Table</h2>
+
+  <input type="text" ng-model="searchText" placeholder="Search student...">
+<div>
+  <button ng-click="sortField='name'; reverse=false">Sort by Name ↑</button>
+  <button ng-click="sortField='name'; reverse=true">Sort by Name ↓</button>
+  <button ng-click="sortField='age'; reverse=false">Sort by Age ↑</button>
+  <button ng-click="sortField='age'; reverse=true">Sort by Age ↓</button>
+</div>
+  <table border="1" cellpadding="5">
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+    </tr>
+    <tr ng-repeat="student in students | filter:searchText | orderBy:sortField:reverse">
+      <td>{{student.name}}</td>
+      <td>{{student.age}}</td>
+    </tr>
+  </table>
+  
+<script>
+    var app = angular.module("myApp", []);
+    app.controller("MainCtrl", function($scope) {
+      $scope.students = [
+        {name: "Hashir", age: 22},
+        {name: "Huzaifa", age: 19},
+        {name: "Abdullah", age: 25},
+        {name: "Hassan", age: 21}
+      ];
+
+      $scope.sortField = 'name';
+      $scope.reverse = false;
+    });
+</script>
+
+</body>
+</html>
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
