@@ -6,18 +6,18 @@
 </head>
 <body>
   <h1>Color Changer App</h1>
-  
   <button id="sayBtn">Change Background</button>
+
   <script>
     let sayBtn = document.getElementById("sayBtn");
-
     sayBtn.addEventListener("click", function() {
-    let colors = [ "lightblue", "lightgreen", "yellow", "red", "pink", "orange"];
+    let colors = [ "lightblue", "lightgreen", "yellow", "red", "pink", "orange" ];
     let randomIndex = Math.floor(Math.random() * colors.length);
     let randomColor = colors[randomIndex];
     document.body.style.backgroundColor = randomColor;
     });
   </script>
+
 </body>
 </html>
 
@@ -32,6 +32,7 @@
   <h1>Text Counter App</h1>
   <input type="text" id="content" placeholder="Enter here"/>
   <p id="count"></p>
+
   <script>
     let content = document.getElementById("content");
     let count = document.getElementById("count");
@@ -41,6 +42,7 @@
     count.textContent = "Character:" +charCount;
     });
   </script>
+
 </body>
 </html>
 
@@ -56,11 +58,11 @@
   <input type="number" id="num" placeholder="Enter your guess:"/>
   <button id="submit">Submit my guess</button>
   <p id="message"></p>
+
   <script>
     let num = document.getElementById("num");
     let submit = document.getElementById("submit");
     let message = document.getElementById("message");
-    
     let secretnum = Math.floor(Math.random() * 10) + 1;
     submit.addEventListener("click", function() {
     let guess = Number(num.value);
@@ -73,6 +75,7 @@
     }
     });
   </script>
+
 </body>
 </html>
 
@@ -87,22 +90,19 @@
   <h1>Mini Calculator</h1>
   <input type="number" id="num1" placeholder="Enter the first number:"/>
   <input type="number" id="num2" placeholder="Enter the second number:"/>
-
   <button id="add">+</button>
   <button id="subtract">-</button>
   <button id="multiply">*</button>
   <button id="divide">/</button>
-  
   <p id="result"></p>
+
   <script>
-    let num1 = Number(document.getElementById("num1").value);
-    let num2 = Number(document.getElementById("num2").value);
     let add = document.getElementById("add");
     let subtract = document.getElementById("subtract");
     let multiply = document.getElementById("multiply");
     let divide = document.getElementById("divide");
     let result = document.getElementById("result");
-    
+
     add.addEventListener("click", function(){
     let num1 = Number(document.getElementById("num1").value);
     let num2 = Number(document.getElementById("num2").value);
@@ -128,5 +128,6 @@
     }
     });
   </script>
+
 </body>
 </html>
