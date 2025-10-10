@@ -1,0 +1,29 @@
+=> Models => LoginRequest.cs
+namespace AuthApi.Models
+{
+    public class LoginRequest
+    {
+        public string Username { get; set; }
+        public string Password { get; set; }
+    }
+}
+
+=> Controllers => AuthController.cs
+using AuthApi.Models;
+using Microsoft.AspNetCore.Mvc;
+
+namespace AuthApi.Controllers
+{
+    public class AuthController : Controller
+    {
+        [HttpPost("login")]
+        public IActionResult Login([FromBody] LoginRequest request)
+        {
+            if (request.Username == "admin" && request.Password == "123")
+            {
+                return Ok(new { Message = "Login successful", Token = "fake-jwt-token" });
+            }
+            return Unauthorized(new { Message = "Invalid username or password" });
+        }
+    }
+}
